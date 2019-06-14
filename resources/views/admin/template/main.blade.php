@@ -12,7 +12,7 @@
 <?php
   // Nombre corto de usuario autentificado.
   $nombre = explode(' ', Auth::user()->nombre);
-  ?>
+?>
 
 <body>
 

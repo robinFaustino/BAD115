@@ -61,3 +61,9 @@ Route::get('/', 'HomeController@index');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+//ruta para el crud de experiencia laboral
+Route::resource('experienciaLaboral','ExperienciaLaboralController');
+
+//ruta para el crud de certificacion
+Route::resource('certificacion','CertificacionController');
