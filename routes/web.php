@@ -49,6 +49,9 @@ Route::group(['middleware' => 'usuario'], function(){
 //ruta para el crud de conocimiento academico
 Route::resource('conocimientoAcademico','Conocimiento_AcademicoController');
 
+//rutas para el crud de Publicaciones 
+Route::resource('publicacion','PublicacionController');
+
 //Route::post('puesto','Puesto_TrabajoController@agregarTrabajo');
 
 /**Route::get('/empresa', function () {

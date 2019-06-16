@@ -8,34 +8,38 @@
 					<hr>
 					
   			<div class="panel panel-default">
- 				<div class="panel-heading">Recomendaciones del postulante</div>
+ 				<div class="panel-heading">Publicaciones del postulante</div>
  				<div class="panel-body">
  					<div class="row">
 				        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 				            <div class="table-responsive">
 				                <table class="table table-striped table-bordered table-condensed table-hover">
 				                    <thead>
-				                        <th>Nombre</th>
-				                        <th>Telefono</th>
-				                        <th>Correo</th>
-				                        <th>Institucion</th>
-				                        <th>Opciones</th>
+				                        <th>Tipo</th>
+				                        <th>Titulo</th>
+				                        <th>Lugar</th>
+				                        <th>Fecha</th>
+				                        <th>Edicion</th>
+				                        <th>ISBN</th>
 				                        <th>Acciones</th>
 				                    </thead>
-				                    @foreach ($recomendacion as $recomendacion)
+				                    @foreach ($publicacion as $publicacion)
 				                    <tr>
-				                        <td>{{ $recomendacion->nombre}}</td>
-				                        <td>{{ $recomendacion->telefono}}</td>
-				                        <td>{{ $recomendacion->correo}}</td>
-				                        <td>{{ $recomendacion->institucion}}</td>
+				                        <td>{{ $publicacion->tipo}}</td>
+				                        <td>{{ $publicacion->titulo}}</td>
+				                        <td>{{ $publicacion->lugar}}</td>
+				                        <td>{{ $publicacion->fecha}}</td>
+				                        <td>{{ $publicacion->edicion}}</td>
+				            			<td>{{ $publicacion->isbn}}</td>
+
 				                        
 				                        <td>
-				                            <a href="{{route('recomendacion.edit',$recomendacion->idrecomendacion)}}">
+				                            <a href="{{route('publicacion.edit',$publicacion->idpublicacion)}}">
                       <button type="button" class="btn btn-info btn-xs">
                         <span class="glyphicon glyphicon-cog"></span>Editar
                       </button>
                     </a>
-				                           <a href="#" data-target="#modal-delete-{{$recomendacion->idrecomendacion}}" data-toggle="modal">
+				                           <a href="#" data-target="#modal-delete-{{$publicacion->idpublicacion}}" data-toggle="modal">
                       <button type="button" class="btn btn-danger btn-xs">
                         <span class="glyphicon glyphicon-trash"></span>Eliminar
                       </button>
@@ -43,7 +47,7 @@
 				                        </td>
 				                    </tr>
 
-				                    @include('recomendacion.modal')
+				                    @include('publicacion.modal')
 				                    
 				                    @endforeach
 				                </table>

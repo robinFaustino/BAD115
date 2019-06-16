@@ -104,5 +104,6 @@
 	<script src="{{ asset('pluglins/jquery/js/jquery.js') }}"></script>
 	<script src="{{ asset('pluglins/bootstrap/js/bootstrap.js') }}"></script>
   <script src="{{ asset('pluglins/bootstrap/js/modes-warning.js') }}"></script>
+  @yield('script')
 </body>
 </html>
