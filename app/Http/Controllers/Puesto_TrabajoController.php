@@ -16,16 +16,12 @@ class Puesto_TrabajoController extends Controller
 {
     public function index(Request $request)
     {
-       /** if ($request)
-        {
-            $roles = DB::select('SELECT * FROM roles');
-            $query=trim($request->get('searchText'));
-            $user=DB::table('users')->where('nombre','LIKE','%'.$query.'%')
-            ->orderBy('id','ASC')
-            ->paginate(7);
-            return view('admin.usuarios.index',["user"=>$user,"searchText"=>$query])->with('roles',$roles);
-        }**/
-        $puestos = DB::select('SELECT * FROM puesto_trabajo');
+       
+        //dd(\Auth::user()->id);
+        $data=\Auth::user()->id;
+
+        $puestos = DB::table('puesto_trabajo')->where('iduser','=',$data)->get();
+        //dd($puestos);
 
 
         return view('empresas.puestos')->with('puestos',$puestos);
@@ -69,7 +65,9 @@ class Puesto_TrabajoController extends Controller
             $puesto->rangoedad=$request->get('rangoedad');
             $puesto->vacantes=$request->get('vacantes');
             $puesto->fechacontrato=$request->get('fechacontrato');
-            $puesto->estado= '0'; 
+            $puesto->estado= '0';
+            $data=\Auth::user()->id;
+            $puesto->iduser=$data; 
 
             $puesto->save();
 
@@ -123,6 +121,8 @@ class Puesto_TrabajoController extends Controller
         $puesto->rangoedad=$request->get('rangoedad');
         $puesto->vacantes=$request->get('vacantes');
         $puesto->fechacontrato=$request->get('fechacontrato');
+        $data=\Auth::user()->id;
+        $puesto->iduser=$data;
 
         $puesto->update();
 
