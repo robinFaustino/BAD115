@@ -44,8 +44,18 @@ class User extends Authenticatable
      *
      * @return bool
      */
-    public function Administrador() {
-        return $this->rol_id = 1;
+    public function admin() {
+        return $this->role_id = 1;
     }
+
+      public function empresa() {
+        return $this->role_id = 2;
+    }
+
+    public function usuario() {
+        return $this->role_id = 3;
+    }
+
+
 
 }

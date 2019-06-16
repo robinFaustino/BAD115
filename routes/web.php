@@ -12,10 +12,7 @@
 */
 
 
-Route::group(['middleware' => 'auth'], function() {
-
-
-Route::group(['middleware' => 'Administrador'], function() {
+Route::group(['middleware' => 'auth', 'admin'], function() {
 
 Route::get('/admin', function () {
     return view('admin/menu');
@@ -32,11 +29,22 @@ Route::get('/ofertas', function () {
 Route::resource('postulante/curriculum','PostulanteController');
 Route::get('postulante/curriculum1','PostulanteController@create');
 
+
+//Rutas con rol de Empresa 
+Route::group(['middleware' => 'empresa'], function(){
+
 Route::resource('empresas','EmpresaController');
 Route::resource('empresas_ofertar','Puesto_TrabajoController');
 //Route::post('empresa','EmpresaController@index2');
 Route::post('empresa','EmpresaController@store');
 Route::post('puesto','Puesto_TrabajoController@store');
+
+}); 
+
+
+//Rutas con rol de Usuario
+
+Route::group(['middleware' => 'usuario'], function(){
 
 //ruta para el crud de conocimiento academico
 Route::resource('conocimientoAcademico','Conocimiento_AcademicoController');
@@ -53,7 +61,10 @@ Route::post('/empresa/edit', function () {
 Route::resource('empresas/ofertar','EmpresaController');
 Route::get('empresas','EmpresaController@create');**/
 
+
+Route::resource('recomendacion','RecomendacionController');
 });
+
 });
 
 Route::get('/', 'HomeController@index');

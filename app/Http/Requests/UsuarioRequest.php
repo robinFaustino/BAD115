@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests;
 
-use App\User;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UsuarioRequest extends FormRequest
@@ -26,18 +25,12 @@ class UsuarioRequest extends FormRequest
 
      public function rules()
     {
-    $user = User::find($this->route('user'));
-
         $rules = array(
             'rol_id'   => 'required',
-            'nombre'   => 'required|max:100',
-            'email'    => 'required|max:100|email|unique:users,email,' . $this->route('user'),
-            'password' => 'max:100',
+            'nombre'   => 'required|min:6|max:100',
+            'email'    => 'required|max:100|email|unique:users',
+            'password' => 'min:8|required|max:100',
         );
-
-        if ($user == null) {
-            $rules['password'] .= '|required|min:8';
-        }
 
         return $rules;
     }

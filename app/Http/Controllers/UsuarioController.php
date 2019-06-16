@@ -21,13 +21,13 @@ class UsuarioController extends Controller
             $query=trim($request->get('searchText'));
             $user=DB::table('users')->where('nombre','LIKE','%'.$query.'%')
             ->orderBy('id','ASC')
-            ->paginate(7);
+            ->paginate(10);
             return view('admin.usuarios.index',["user"=>$user,"searchText"=>$query])->with('roles',$roles);
         }
 
     }
 
-    public function create(Request $request)
+    public function create()
     {
         //$roles=DB::table('roles');
         //$roles = "SELECT * FROM roles";
@@ -38,7 +38,7 @@ class UsuarioController extends Controller
         return view('admin.usuarios.create')->with('roles',$roles);
     }
 //Request $request);//
-    public function store(Request $request)
+    public function store(UsuarioRequest $request)
     {
         
         //dd($request->all());
@@ -65,15 +65,8 @@ class UsuarioController extends Controller
         //return Redirect::to('clinica/medico');
 
     }
-        flash('
-            <h4>Registro de Usuario</h4>
-            <p>El usuario <strong>' . $usuario->nombre . ' ' . '</strong> se ha registrado correctamente.</p>
-        ')->success()->important();
         
 
-        return Redirect::to('admin/usuarios');
-
-    }
 
     public function update(Request $request, $id){
         $user = User::find($id);

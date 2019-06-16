@@ -4,11 +4,10 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Contracts\Auth\Guard;
- 
 
-class Administrador
+class Usuario
 {
- /**
+   /**
      * Implementación de Guard.
      *
      * @var Guard
@@ -35,7 +34,7 @@ class Administrador
      */
     public function handle($request, Closure $next)
     {
-       if ($this->auth->user()->admin()) {
+       if ($this->auth->user()->usuario()) {
             return $next($request);
         } else {
             abort(403);
