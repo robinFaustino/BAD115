@@ -8,7 +8,8 @@ use App\Postulante;
 use App\Pais;
 use App\Departamento;
 use App\Municipio;
-//use App\Rol;
+use App\Puesto_Trabajo;
+use App\Postulante_Puesto;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\PostulanteFormRequest;
 use DB;
@@ -48,6 +49,7 @@ class PostulanteController extends Controller
         $pais= DB::table('pais')->get();
         $departamento= DB::table('departamento')->get();
         $municipio= DB::table('municipio')->get();
+
         //$roles=DB::table('roles');
         //$roles = "SELECT * FROM roles";
         //$roles = DB::select('SELECT * FROM roles');
@@ -59,6 +61,7 @@ class PostulanteController extends Controller
 
     public function store(PostulanteFormRequest $request)
     {
+        //dd($request->get('idpuestotrabajo'));
         $postulante = new Postulante;
         $postulante->firtsname=$request->get('firtsname');
         $postulante->secondsname=$request->get('secondsname');
@@ -76,6 +79,11 @@ class PostulanteController extends Controller
         $postulante->telefono=$request->get('telefono');
 
         $postulante->save();
+
+        $postulante_puesto = new Postulante_Puesto;
+        $postulante_puesto->idpuestotrabajo = $request->get('idpuestotrabajo');
+        $postulante_puesto->idpostulante = $postulante->idpostulante;
+        $postulante_puesto->save();
 
         return view('postulante.index');
     }

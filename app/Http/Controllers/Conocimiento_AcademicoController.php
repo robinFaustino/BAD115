@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Conocimiento_Academico;
-//use App\Departamento;
+use App\Postulante_Conocimiento;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\Conocimiento_AcademicoFormRequest;
 use DB;
@@ -44,11 +44,16 @@ class Conocimiento_AcademicoController extends Controller
 
     public function create()
     {
-        return view("conocimientoAcademico.create"); 
-    }
+        $postu = DB::select('SELECT * FROM postulante');
 
-    public function store(Conocimiento_AcademicoFormRequest $request)
+        return view("conocimientoAcademico.create")->with('postu',$postu); 
+    }
+//Conocimiento_AcademicoFormRequest
+    public function store(Request $request)
     {
+        $data=$request->idpostulante;
+        //dd($data);
+
         $conoci = new Conocimiento_Academico;
         $conoci->tipo=$request->get('tipo');
         $conoci->nombre=$request->get('nombre'); 
@@ -57,6 +62,11 @@ class Conocimiento_AcademicoController extends Controller
         $conoci->fechafin=$request->get('fechafin');
         $conoci->save();
         //dd($request->all());
+        //$conoci->postulantes()->attach($data);
+        $postulante_conocimiento = new Postulante_Conocimiento;
+        $postulante_conocimiento->idpostulante=$data;
+        $postulante_conocimiento->idconocimientoacademino = $conoci->idconocimientoacademino;
+        $postulante_conocimiento->save();
 
         return Redirect::to('conocimientoAcademico');
     }

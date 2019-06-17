@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\ExperienciaLaboral;
+use App\EXPERIENCIA_POSTULANTE;
 //use App\Departamento;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\ExperienciaLaboralFormRequest;
@@ -35,11 +36,16 @@ class ExperienciaLaboralController extends Controller
 
     public function create()
     {
-        return view("experienciaLaboral.create"); 
+        $postu = DB::select('SELECT * FROM postulante');
+
+        return view("experienciaLaboral.create")->with('postu',$postu); 
     }
-//
-    public function store(ExperienciaLaboralFormRequest $request)
+//ExperienciaLaboralFormRequest
+    public function store(Request $request)
     {
+        $data=$request->idpostulante;
+        //dd($data);
+
         $experiencia = new ExperienciaLaboral;
         $experiencia->nombrepuesto=$request->get('nombrepuesto');
         $experiencia->fechainicio=$request->get('fechainicio');
@@ -48,8 +54,18 @@ class ExperienciaLaboralController extends Controller
         $experiencia->nombreorganizacion=$request->get('nombreorganizacion');
         $experiencia->telefonoorganizacion=$request->get('telefonoorganizacion');
         $experiencia->correoorganizacion=$request->get('correoorganizacion');
+
         $experiencia->save();
+
+        //$experiencia->postulantes()->attach($data);
         //dd($request->all());
+        //$experiencia->postulantes()->attach($data);
+        $postulante_experiencia = new EXPERIENCIA_POSTULANTE;
+        $postulante_experiencia->idexperiencialaboral=$experiencia->idexperiencialaboral;
+        $postulante_experiencia->idpostulante=$data;
+        
+        $postulante_experiencia->save();
+
 
         return Redirect::to('experienciaLaboral');
     }
@@ -86,8 +102,8 @@ class ExperienciaLaboralController extends Controller
 
     public function destroy($id)
     {
-        /**$experiencia=ExperienciaLaboral::findOrFail($id);
-        $experiencia->delete();**/
+        $experiencia=ExperienciaLaboral::findOrFail($id);
+        $experiencia->delete();
         
         return Redirect::to('experienciaLaboral/show');
     }

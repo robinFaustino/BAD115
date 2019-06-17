@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Certificacion;
-//use App\Departamento;
+use App\Postulante;
+use App\Certificacion_Postulante;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\CertificadoFormRequest;
 use DB;
@@ -35,11 +36,15 @@ class CertificacionController extends Controller
 
     public function create()
     {
-        return view("certificacion.create"); 
+        $postu = DB::select('SELECT * FROM postulante');
+
+        return view("certificacion.create")->with('postu',$postu); 
     }
 //
     public function store(CertificadoFormRequest $request)
     {
+        $data=$request->idpostulante;
+
         $certificacion = new Certificacion;
         $certificacion->titulo=$request->get('titulo');
         $certificacion->tipo=$request->get('tipo');
@@ -49,6 +54,10 @@ class CertificacionController extends Controller
         $certificacion->fechafin=$request->get('fechafin');
         $certificacion->save();
         //dd($request->all());
+        $certificacion_postulante = new Certificacion_Postulante;
+        $certificacion_postulante->idcertificacion = $certificacion->idcertificacion;
+        $certificacion_postulante->idpostulante=$data;
+        $certificacion_postulante->save();
 
         return Redirect::to('certificacion');
     }
