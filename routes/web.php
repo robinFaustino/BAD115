@@ -22,6 +22,12 @@ Route::resource('ofertas','OfertaController');
 Route::resource('admin/usuarios','UsuarioController');
 Route::get('admin/usuario','UsuarioController@create');
 
+//Rutas para tipo de logro
+Route::resource('tipologro', 'TipoLogroController');
+
+//Ruta para logro
+Route::resource('logro','LogroController');
+
 
 /*Route::get('/ofertas', function () {
     return view('postulante/menu');

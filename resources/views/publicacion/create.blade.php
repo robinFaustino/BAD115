@@ -78,7 +78,7 @@
 
 <div class="form-group">
     <center>              
-        <a href="{{ url('publicacion.index') }}"><button class="btn btn-danger">Regresar</button></a>
+        <a href="{{ url('publicacion') }}"><button class="btn btn-danger">Regresar</button></a>
     </center>
 </div>
 @endsection
