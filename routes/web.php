@@ -90,3 +90,5 @@ Route::resource('experienciaLaboral','ExperienciaLaboralController');
 
 //ruta para el crud de certificacion
 Route::resource('certificacion','CertificacionController');
+// ruta para el crud de Pais
+Route::resource('pais','PaisController');
