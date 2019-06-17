@@ -18,13 +18,15 @@ Route::get('/admin', function () {
     return view('admin/menu');
 });
 
+Route::resource('ofertas','OfertaController');
 Route::resource('admin/usuarios','UsuarioController');
 Route::get('admin/usuario','UsuarioController@create');
 
 
-Route::get('/ofertas', function () {
+/*Route::get('/ofertas', function () {
     return view('postulante/menu');
-});
+});*/
+
 route::resource('postulante','PostulanteController');
 Route::resource('puesto','Puesto_TrabajoController');
 //Route::resource('postulante/curriculum','PostulanteController');

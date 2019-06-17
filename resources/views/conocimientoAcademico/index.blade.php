@@ -12,7 +12,7 @@
  		<center>
     	<a href="conocimientoAcademico/create" class="btn btn-primary">Registrar</a>
     	<a href="conocimientoAcademico/show" class="btn btn-primary my-2">Ver registro</a>
-    	<button class="btn btn-danger" type="reset">Regresar</button>
+        <a href="{{ url('postulante') }}"><button class="btn btn-danger">Regresar</button></a>
     	</center>
     </div>
 </div>
