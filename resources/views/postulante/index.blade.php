@@ -7,29 +7,27 @@
   <!-- Main jumbotron for a primary marketing message or call to action -->
   <div class="jumbotron">
     <div class="container">
-      <h1 class="display-3">Ofertas de Trabajo</h1>
+      <h1 class="display-3">Mi área</h1>
         <div class="row">
-
           <div class="col-lg-4">
             <center>
             <img src="{{ asset('imagen/u1.JPG') }}"  class="img-circle" width="140" height="140"/>
             <p></p>
-            <p><a class="btn btn-primary btn-lg" href="postulante/curriculum" role="button">Aplicar Oferta</a></p>
+            <p><a class="btn btn-primary btn-lg" href="create" role="button">Ver Perfil</a></p>
             </center>
           </div>
-          <div class="col-lg-4">
-            <center>
-            <img src="{{ asset('imagen/u1.JPG') }}"  class="img-circle" width="140" height="140"/>
-            <p></p>
-            <p><a class="btn btn-primary btn-lg" href="postulante/curriculum1" role="button">Ver Perfil</a></p>
-            </center>
-          </div>
-
           <div class="col-lg-4">
             <center>
             <img src="{{ asset('imagen/u2.PNG') }}" alt="..." class="img-circle" width="140" height="140"/>
             <p></p>
-            <p><a class="btn btn-primary btn-lg" href="" role="button">Ver ofertas de trabajo</a></p>
+            <p><a class="btn btn-primary btn-lg" href="{{ url('puesto') }}" role="button">Buscar ofertas de trabajo</a></p>
+            </center>
+          </div>
+          <div class="col-lg-4">
+            <center>
+            <img src="{{ asset('imagen/u1.JPG') }}"  class="img-circle" width="140" height="140"/>
+            <p></p>
+            <p><a class="btn btn-primary btn-lg" href="postulante/curriculum" role="button">Proceso de mis postulaciones</a></p>
             </center>
           </div>
         </div>

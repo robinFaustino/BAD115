@@ -6,10 +6,17 @@
 			<div class="row">
         <h3><center>Mi Curriculum</center></h3>
 				<div class="col-md-8 col-md-offset-2">
-
+          <a href="{{ url('certificacion/create') }}">
+              <button type="button" class="btn btn-info ">Certificacion</button></a>
+          <a href="{{ url('conocimientoAcademico/create') }}">
+              <button type="button" class="btn btn-info ">Conocimiento Academico</button></a>
+          <a href="{{ url('experienciaLaboral/create') }}">
+              <button type="button" class="btn btn-info ">Experiencia Laboral</button></a>
+          <a href="{{ url('recomendacion/create') }}">
+              <button type="button" class="btn btn-info ">Recomendaciones</button></a>
 					<br>
 					<hr>
-					{!! Form::open(array('url'=>'postulante/curriculum1','method'=>'POST','autocomplete'=>'off')) !!}
+					{!! Form::open(array('url'=>'postulante','method'=>'POST','autocomplete'=>'off', 'enctype'=> 'multipart/form-data')) !!}
   					<div class="panel panel-default">
  						<div class="panel-heading">Datos personales</div>
  						<div class="panel-body">
@@ -57,26 +64,25 @@
                 </div>
 
               <div class="form-group">
-                  <label for="role_id">Pais</label>
-                  <select name="role_id" id="role_id" class="form-control">
+                  <label for="idpais">Pais</label>
+                  <select name="idpais" id="idpais" class="form-control">
                     <option selected value="">Seleccione pais</option>
                     @foreach ($paise as $pais)
                       <option value="{{$pais ->idpais }}">{{$pais->nombre}}</option>
                     @endforeach
                   </select>
               </div>
+              
               <div class="form-group">
-                  <label for="role_id">Departamento</label>
-                  <select name="role_id" id="departamento" class="form-control">
+                  <label for="departamento">Departamento</label>
+                  <select name="departamento" id="departamento" class="form-control">
                     <option selected value="">Seleccione departamento</option>
-                    <option value="san salvador">San salvador</option>
                   </select>
               </div>
               <div class="form-group">
-                  <label for="role_id">Municipio</label>
-                  <select name="role_id" id="municipio" class="form-control">
+                  <label for="municipio">Municipio</label>
+                  <select name="municipio" id="municipio" class="form-control">
                     <option selected value="">Seleccione municipio</option>
-                    <option value="Ciudad Delgado">Ciudad Delgado</option>
                   </select>
               </div>
     
@@ -90,6 +96,11 @@
     							<label for="telefono">Telefono</label>
     							<input type="telefono" name="telefono" class="form-control" id="telefono" placeholder="0000-0000">
  						 	</div>
+
+              <div>
+                <label for="avatar">Imagen</label>
+                <input type="file" name="avatar" class="form-group">
+              </div>
   
   							<!--<div class="form-group">
     							<label for="exampleInputFile">File input</label>
@@ -115,4 +126,10 @@
 		</div>
 
 	
+@endsection
+
+@section('scripts')
+  <script src="/js/departamento.js"></script>
+  <script src="/js/municipio.js"></script>
+
 @endsection

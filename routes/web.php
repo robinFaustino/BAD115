@@ -25,9 +25,10 @@ Route::get('admin/usuario','UsuarioController@create');
 Route::get('/ofertas', function () {
     return view('postulante/menu');
 });
-
-Route::resource('postulante/curriculum','PostulanteController');
-Route::get('postulante/curriculum1','PostulanteController@create');
+route::resource('postulante','PostulanteController');
+Route::resource('puesto','Puesto_TrabajoController');
+//Route::resource('postulante/curriculum','PostulanteController');
+///Route::get('postulante/curriculum1','PostulanteController@create');
 
 
 //Rutas con rol de Empresa 
