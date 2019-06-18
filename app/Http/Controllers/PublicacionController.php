@@ -98,8 +98,16 @@ class PublicacionController extends Controller
     public function update(PublicacionRequests $request, $id)
     {
         $publicacion = Publicacion::find($id);
+
+        if($publicacion->tipo == 'articulo'){
         $publicacion->fill($request->all());
+        $publicacion->edicion="";
+        $publicacion->isbn="";
         $publicacion->save();
+        } else{
+            $publicacion->fill($request->all());
+            $publicacion->save();
+        }
 
         flash('
             <h4>Edición de Publicacion</h4>

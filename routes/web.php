@@ -17,12 +17,31 @@ Route::get('/admin', function () {
     return view('admin/menu');
 });
 
+Route::resource('ofertas','OfertaController');
 Route::resource('admin/usuarios','UsuarioController');
 Route::get('admin/usuario','UsuarioController@create');
 
+//Rutas para tipo de logro
+Route::resource('tipologro', 'TipoLogroController');
 
-Route::get('/ofertas', function () {
+//Ruta para logro
+Route::resource('logro','LogroController');
+
+
+/*Route::get('/ofertas', function () {
     return view('postulante/menu');
+});*/
+
+Route::get('puestoOfertas/{idpuestotrabajo}', function($idpuestotrabajo){
+
+	$id=$idpuestotrabajo;
+	$pais= DB::table('pais')->get();
+	$departamento= DB::table('departamento')->get();
+    $municipio= DB::table('municipio')->get();
+	//dd($id);
+	//dd($pais);
+
+	return view('postulante.create')->with('paise',$pais)->with('id',$id)->with('dep',$departamento)->with('mun',$municipio);
 });
 
 
@@ -79,6 +98,12 @@ Route::resource('conocimientoAcademico','Conocimiento_AcademicoController');
 //rutas para el crud de Publicaciones 
 Route::resource('publicacion','PublicacionController');
 
+//ruta para el crud de habilidad_lenguaje
+Route::resource('habilidad_lenguaje', 'HabilidadLenguajeController');
+
+//ruta para el crud de idioma
+Route::resource('idioma','IdiomaController');
+
 //Route::post('puesto','Puesto_TrabajoController@agregarTrabajo');
 
 /**Route::get('/empresa', function () {
@@ -108,3 +133,5 @@ Route::resource('experienciaLaboral','ExperienciaLaboralController');
 
 //ruta para el crud de certificacion
 Route::resource('certificacion','CertificacionController');
+// ruta para el crud de Pais
+Route::resource('pais','PaisController');

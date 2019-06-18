@@ -1,63 +1,84 @@
 @extends ('admin.template.main')
 
 @section ('contenido')
+<div class="panel panel-default">
+ 	<div class="panel-heading"><center><h4>Bienvenido!!!</h4></center></div>
+ 	<div class="panel-body">
 
-<main role="main">
+ 		<div class="row">
 
-  <!-- Main jumbotron for a primary marketing message or call to action -->
-  <div class="jumbotron">
-    <div class="container">
-      <h1 class="display-3">Mi área</h1>
-        <div class="row">
-          <div class="col-lg-4">
-            <center>
-            <img src="{{ asset('imagen/u1.JPG') }}"  class="img-circle" width="140" height="140"/>
-            <p></p>
-            <p><a class="btn btn-primary btn-lg" href="create" role="button">Ver Perfil</a></p>
-            </center>
-          </div>
-          <div class="col-lg-4">
-            <center>
-            <img src="{{ asset('imagen/u2.PNG') }}" alt="..." class="img-circle" width="140" height="140"/>
-            <p></p>
-            <p><a class="btn btn-primary btn-lg" href="{{ url('puesto') }}" role="button">Buscar ofertas de trabajo</a></p>
-            </center>
-          </div>
-          <div class="col-lg-4">
-            <center>
-            <img src="{{ asset('imagen/u1.JPG') }}"  class="img-circle" width="140" height="140"/>
-            <p></p>
-            <p><a class="btn btn-primary btn-lg" href="postulante/curriculum" role="button">Proceso de mis postulaciones</a></p>
-            </center>
+  			<div class="col-sm-6 col-md-4">
+    			<div class="thumbnail">
+      				<img src="..." alt="...">
+      					<div class="caption">
+      						<center>
+        					<h3>Ver Perfil</h3>
+        					<p>...</p>
+        					<p><a href="" class="btn btn-primary" role="button">Button</a></p>
+        					</center>
+      					</div>
+    			</div>
+  			</div>
+
+  			<div class="col-sm-6 col-md-4">
+    			<div class="thumbnail">
+      				<img src="..." alt="...">
+      					<div class="caption">
+      						<center>
+        					<h3>Certificaciones</h3>
+        					<p>...</p>
+        					<p><a href="certificacion" class="btn btn-primary" role="button">Ingresar</a></p>
+        					</center>
+      					</div>
+    			</div>
+  			</div>
+
+  			<div class="col-sm-6 col-md-4">
+    			<div class="thumbnail">
+      				<img src="..." alt="...">
+      					<div class="caption">
+      						<center>
+        					<h3>Conocimiento Academico</h3>
+        					<p>...</p>
+        					<p><a href="conocimientoAcademico" class="btn btn-primary" role="button">Ingresar</a></p>
+        					</center>
+      					</div>
+    			</div>
+  			</div>
+
+  			<div class="col-sm-6 col-md-4">
+    			<div class="thumbnail">
+      				<img src="..." alt="...">
+      					<div class="caption">
+      						<center>
+        					<h3>Experiencia Laboral</h3>
+        					<p>...</p>
+        					<p><a href="experienciaLaboral" class="btn btn-primary" role="button">Ingresar</a></p>
+        					</center>
+      					</div>
+    			</div>
+  			</div>
+
+        <div class="col-sm-6 col-md-4">
+          <div class="thumbnail">
+              <img src="..." alt="...">
+                <div class="caption">
+                  <center>
+                  <h3>Proceso de mis postulaciones</h3>
+                  <p>...</p>
+                  <p><a href="#" class="btn btn-primary" role="button">Ingresar</a></p>
+                  </center>
+                </div>
           </div>
         </div>
-    </div>
+
+		</div>
+
+ 	</div>
+  <div class="form-group">
+        <center>  
+          <a href="{{ url('ofertas') }}"><button class="btn btn-danger">Regresar</button></a>
+        </center>
   </div>
-
-  <div class="container">
-    <!-- Example row of columns -->
-    <div class="row">
-      <div class="col-md-4">
-        <h2>Heading</h2>
-        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-        <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
-      </div>
-      <div class="col-md-4">
-        <h2>Heading</h2>
-        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-        <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
-      </div>
-      <div class="col-md-4">
-        <h2>Heading</h2>
-        <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-        <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
-      </div>
-    </div>
-
-    <hr>
-
-  </div> <!-- /container -->
-
-</main>
-
+</div>
 @endsection

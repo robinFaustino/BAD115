@@ -37,8 +37,8 @@
                 @endif
  		<div class="form-group">
     		<label for="tipo">Tipo</label>
-    		<select name="tipo" id="tipo" class="form-control">
-    			<option selected value="">-- Seleccione una Opcion --</option>
+    		<select name="tipo" id="tipo" class="form-control" onmousedown="habilitar()" required >
+    			<option selected value="">-- Seleccione un tipo --</option>
     			<option value="libro">Libro</option>
     			<option value="articulo">Articulo</option>
     		</select>
@@ -61,12 +61,12 @@
 
   		<div class="form-group">
     		<label for="edicion">Edicion</label>
-    		<input type="edicion"  name="edicion" class="form-control" id="edicion" value="{{ $publicacion->edicion}}" placeholder="Edicion del libro">
+    		<input type="edicion"  name="edicion" class="form-control" id="edicion" value="{{ $publicacion->edicion}}" placeholder="Edicion del libro" requierd>
   		</div>
 
       <div class="form-group">
         <label for="isbn">ISBN</label>
-        <input type="isbn"  name="isbn" class="form-control" id="isbn" value="{{ $publicacion->isbn}}"  placeholder="ISBN del libro">
+        <input type="isbn"  name="isbn" class="form-control" id="isbn" value="{{ $publicacion->isbn}}"  placeholder="ISBN del libro" required>
       </div>
 
 						<div class="form-group">
@@ -81,6 +81,27 @@
 		</div>
 	</div>
 </div>
+@endsection
 
+@section('script')
+
+<script type="text/javascript">
+
+function habilitar(){
+  var tipo = document.getElementById("tipo");
+  var edicion = document.getElementById("edicion");
+  var isbn = document.getElementById("isbn");
+
+  if(tipo.value == 'libro')
+  {
+    edicion.disabled = false;
+    isbn.disabled= false;
+  } else {
+    edicion.disabled = true;
+    isbn.disabled = true;
+  }
+}
+
+</script>
 
 @endsection

@@ -24,6 +24,6 @@ class Publicacion extends Model
 
     public function postulante()
     {
-    	return belongsTo('App\Postulante');
+    	return $this->belongsTo('App\Postulante');
     }
 }

@@ -45,7 +45,17 @@
       <label for="fechafin">Fecha Final</label>
       <input type="date"  name="fechafin" class="form-control" id="fechafin" placeholder="yyyy/mm/dd">
     </div>
- 
+
+    <div class="form-group">
+    <label for="idpostulante">Postulante</label>  
+      <select name="idpostulante" id="idpostulante" class="form-control">
+          <option selected value="">Seleccione Perfil postulante</option>
+            @foreach ($postu as $postu)
+              <option value="{{$postu->idpostulante}}">{{$postu->firtsname}},{{$postu->lastname}}</option>
+            @endforeach  
+      </select>
+    </div>
+
   	<div class="form-group">
   		<center>
     		<button class="btn btn-primary" type="submit">Guardar</button>
