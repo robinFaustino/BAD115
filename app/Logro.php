@@ -27,6 +27,6 @@ class Logro extends Model
 
     public function tipoLogro()
     {
-    	return belongsTo('App\TipoLogro);
+    	return $this->belongsTo('App\TipoLogro');
     }
 }

@@ -8,36 +8,29 @@
 					<hr>
 					
   			<div class="panel panel-default">
- 				<div class="panel-heading">Logros del Postulante </div>
+ 				<div class="panel-heading">Idiomas</div>
  				<div class="panel-body">
  					<div class="row">
 				        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 				            <div class="table-responsive">
 				                <table class="table table-striped table-bordered table-condensed table-hover">
 				                    <thead>
-				                        <th>Tipo</th>
-				                        <th>Fecha Inicio</th>
-				                        <th>Fecha Fin</th>
-				                        <th>Descripcion</th>
-				                        <th>Institucion</th>
+				                    	<th>Habilidad Lenguaje</th>
+				                        <th>Nombre</th>
 				                        <th>Acciones</th>
 				                    </thead>
-				                    @foreach ($logro as $logro)
+				                    @foreach ($idioma as $idioma)
 				                    <tr>
-				                        <td>{{ $logro->idtipologro}}</td>
-				                        <td>{{ $logro->fechainicio}}</td>
-				                        <td>{{ $logro->fechafin}}</td>
-				                        <td>{{ $logro->descripcion}}</td>
-				            			<td>{{ $logro->institucion}}</td>
-
+				                    	<td>{{ $idioma->idhabilidadlenguaje}}</td>
+				                        <td>{{ $idioma->nombre}}</td>
 				                        
 				                        <td>
-				                            <a href="{{route('logro.edit',$logro->idlogro)}}">
+				                            <a href="{{route('idioma.edit',$idioma->ididioma)}}">
                       <button type="button" class="btn btn-info btn-xs">
                         <span class="glyphicon glyphicon-cog"></span>Editar
                       </button>
                     </a>
-				                           <a href="#" data-target="#modal-delete-{{$logro->idlogro}}" data-toggle="modal">
+				                           <a href="#" data-target="#modal-delete-{{$idioma->ididioma}}" data-toggle="modal">
                       <button type="button" class="btn btn-danger btn-xs">
                         <span class="glyphicon glyphicon-trash"></span>Eliminar
                       </button>
@@ -45,7 +38,7 @@
 				                        </td>
 				                    </tr>
 
-				                    @include('logro.modal')
+				                    @include('idioma.modal')
 				                    
 				                    @endforeach
 				                </table>

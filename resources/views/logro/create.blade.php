@@ -53,7 +53,7 @@
 
 <div class="form-group">
         <label for="descripcion">Descripcion</label>
-        <input type="descripcion"  name="descripcion" class="form-control" id="edicion" placeholder="Edicion del libro">
+        <input type="descripcion"  name="descripcion" class="form-control" id="edicion" placeholder="Descripcion">
       </div>
 
       <div class="form-group">
@@ -61,7 +61,12 @@
         <input type="institucion"  name="institucion" class="form-control" id="institucion" placeholder="Institucion">
       </div>
 
-
+          <div class="form-group">
+        <center>
+        <button class="btn btn-primary" type="submit">Guardar</button>
+        <button class="btn btn-warning" type="submit">Cancelar</button>       
+        </center>
+      </div>
 
       {!!Form::close()!!}
 
@@ -72,7 +77,7 @@
 
 <div class="form-group">
     <center>              
-        <a href="{{ url('publicacion.index') }}"><button class="btn btn-danger">Regresar</button></a>
+        <a href="{{ url('logro') }}"><button class="btn btn-danger">Regresar</button></a>
     </center>
 </div>
 

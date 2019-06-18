@@ -19,6 +19,6 @@ class TipoLogro extends Model
 
     public function logros()
     {
-    	return hasMany('App\Logro');
+    	return $this->hasMany('App\Logro');
     }
 }

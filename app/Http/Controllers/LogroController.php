@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Postulante; 
 use App\TipoLogro;
+use App\Logro;
 use Laracasts\Flash\Flash;
+use App\Http\Requests\LogroRequest;
 use DB;
 
 class LogroController extends Controller
@@ -52,9 +54,17 @@ class LogroController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(LogroRequest $request)
     {
-        //
+        $logro = new Logro($request->all());
+        $logro->save(); 
+
+         flash('
+            <h4>Registro de Logro </h4>
+            <p>El logro se ha registrado correctamente.</p>
+        ')->success()->important();
+
+         return redirect()->route('logro.index');
     }
 
     /**
@@ -76,7 +86,14 @@ class LogroController extends Controller
      */
     public function edit($id)
     {
-        //
+        $tipologro = DB::select('SELECT * FROM tipo_logro');
+        $postulante = DB::select('SELECT * FROM postulante');
+        $logro = Logro::find($id);
+
+        return view('logro.edit')
+                ->with('logro',$logro)
+                ->with('tipologro',$tipologro)
+                ->with('postulante', $postulante);
     }
 
     /**
@@ -86,9 +103,19 @@ class LogroController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(LogroRequest $request, $id)
     {
-        //
+        $logro = Logro::find($id);
+        $logro->fill($request->all());
+        $logro->save();
+
+        flash('
+            <h4>Edición de logro</h4>
+            <p>El logro se ha editado correctamente.</p>
+        ')->success()->important();
+
+
+        return redirect()->route('logro.index');
     }
 
     /**
@@ -99,6 +126,14 @@ class LogroController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $logro = Logro::find($id);
+        $logro->delete($id);
+
+         flash('
+            <h4>Eliminar logro</h4>
+            <p>El logro se ha eliminado correctamente.</p>
+        ')->error()->important();
+
+         return redirect()->route('logro.index');
     }
 }

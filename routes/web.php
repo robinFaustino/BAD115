@@ -61,6 +61,12 @@ Route::resource('conocimientoAcademico','Conocimiento_AcademicoController');
 //rutas para el crud de Publicaciones 
 Route::resource('publicacion','PublicacionController');
 
+//ruta para el crud de habilidad_lenguaje
+Route::resource('habilidad_lenguaje', 'HabilidadLenguajeController');
+
+//ruta para el crud de idioma
+Route::resource('idioma','IdiomaController');
+
 //Route::post('puesto','Puesto_TrabajoController@agregarTrabajo');
 
 /**Route::get('/empresa', function () {

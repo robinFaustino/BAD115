@@ -6,10 +6,10 @@
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">x</span>
           </button>
-          <h4 class="modal-title">Eliminar Recomendacion</h4>
+          <h4 class="modal-title">Eliminar Publicacion</h4>
         </div>
         <div class="modal-body">
-          <p>¿Desea eliminar la recomendacion de:  {{ $publicacion->titulo }}?</p>
+          <p>¿Desea eliminar la publicacion:  {{ $publicacion->titulo }}?</p>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default btn-flat" data-dismiss="modal">Cerrar</button>

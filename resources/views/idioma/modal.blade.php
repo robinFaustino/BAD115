@@ -1,15 +1,15 @@
-<div class="modal fade modal-slide-in-right" aria-hidden="true" role="dialog" tabindex="-1" id="modal-delete-{{ $logro->idlogro}}">
-  {!! Form::open(array('action' => array('LogroController@destroy', $logro->idlogro), 'method' => 'delete')) !!}
+<div class="modal fade modal-slide-in-right" aria-hidden="true" role="dialog" tabindex="-1" id="modal-delete-{{ $idioma->ididioma}}">
+  {!! Form::open(array('action' => array('IdiomaController@destroy', $idioma->ididioma), 'method' => 'delete')) !!}
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">x</span>
           </button>
-          <h4 class="modal-title">Eliminar Logro</h4>
+          <h4 class="modal-title">Eliminar idioma</h4>
         </div>
         <div class="modal-body">
-          <p>¿Desea eliminar el logro:  {{ $logro->idtipologro }}?</p>
+          <p>¿Desea eliminar el idioma:  {{ $idioma->nombre }}?</p>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default btn-flat" data-dismiss="modal">Cerrar</button>
