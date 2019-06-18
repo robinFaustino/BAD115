@@ -11,7 +11,6 @@
 |
 */
 
-
 Route::group(['middleware' => 'auth', 'admin'], function() {
 
 Route::get('/admin', function () {
@@ -25,10 +24,37 @@ Route::get('admin/usuario','UsuarioController@create');
 Route::get('/ofertas', function () {
     return view('postulante/menu');
 });
+
+
 route::resource('postulante','PostulanteController');
+
+Route::resource('empresas','EmpresaController');
+Route::resource('empresas_ofertar','Puesto_TrabajoController');
+//Route::post('empresa','EmpresaController@index2');
+Route::post('empresa','EmpresaController@store');
+Route::post('puesto','Puesto_TrabajoController@store');
+
+
 Route::resource('puesto','Puesto_TrabajoController');
-//Route::resource('postulante/curriculum','PostulanteController');
-///Route::get('postulante/curriculum1','PostulanteController@create');
+
+
+//Route::post('puesto','Puesto_TrabajoController@agregarTrabajo');
+
+/**Route::get('/empresa', function () {
+    return view('empresas/main');
+});
+Route::post('/empresa/edit', function () {
+
+    return view('empresas/edit');
+});
+Route::resource('empresas/ofertar','EmpresaController');
+Route::get('empresas','EmpresaController@create');**/
+
+Route::resource('conocimientoAcademico','Conocimiento_AcademicoController');
+Route::resource('recomendacion','RecomendacionController');
+Route::resource('experienciaLaboral','ExperienciaLaboralController');
+Route::resource('certificacion','CertificacionController');
+
 
 
 //Rutas con rol de Empresa 
