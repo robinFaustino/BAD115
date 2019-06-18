@@ -1,6 +1,8 @@
 <?php
 
 use App\Empresa;
+use App\Postulante;
+use App\Puesto_Trabajo;
 
 ?>
 @extends ('admin.template.main')
@@ -19,31 +21,28 @@ use App\Empresa;
               <div class="table-responsive">
                 <table class="table table-striped table-bordered table-condensed table-hover">
                   <thead>
-                    <th>Empresa</th>
                     <th>Nombre</th>
-                    <th>Descripcion</th>
-                    <th>Estado</th>
-                    <th>Proceso</th>
-                    <th>Examen</th>
+                    <th>Puesto</th>
+                    <th>Empresa</th>
+                    <th>Opciones</th>
                   </thead>
-                  @foreach ($puestoTrabajo as $puesto)
-                <tr>
-                  
+                  @foreach ($puesto_postu as $puesto_postu)
+                  <tr>
                   <?php                 
 
-                  $emp=Empresa::findOrFail($puesto->idempresa);
+                  $pos=Postulante::findOrFail($puesto_postu->idpostulante);
+                  $pues=Puesto_Trabajo::findOrFail($puesto_postu->idpuestotrabajo);
+                  $emp=Empresa::findOrFail($pues->idempresa)
 
                   ?>
+                  <td>{{$pos->lastname}}, {{$pos->firtsname}}</td>
+                  <td>{{$pues->nombre}}</td>
                   <td>{{$emp->nombre}}</td>
-                  <td>{{$puesto->nombre}}</td>
-                  <td>{{$puesto->descripcion}}</td>
-                  <td>{{$puesto->estado}}</td>
-                  <td>{{}}</td>
-                  <td>{{}}</td>
                   <td>
-                    
+                    <a href="#"><button>Acpetar</button></a>
+                    <a href="#"><button>Cancelar</button></a>
                   </td>
-                </tr>
+                  </tr>
                 @endforeach
                 </table>
               </div>

@@ -78,6 +78,9 @@ class PostulanteController extends Controller
         $postulante->correo=$request->get('correo');
         $postulante->telefono=$request->get('telefono');
 
+        $data=\Auth::user()->id;
+        $postulante->iduser=$data;
+
         $postulante->save();
 
         $postulante_puesto = new Postulante_Puesto;
@@ -99,22 +102,23 @@ class PostulanteController extends Controller
     public function show(Request $request){
 
         $data=\Auth::user()->id;
-
+        //dd($data);
         $postulante = DB::table('postulante')->select('idpostulante')->where('iduser','=',$data)->get();
-        
+        //dd($postulante);
         foreach ($postulante as $postulante) {
             $data2[]=$postulante->idpostulante;
         }
-
+        //dd($data2);
         $puesto_postu=DB::table('postulante_puesto')->whereIn('idpostulante',$data2)->get();
-
-        foreach ($puesto_postu as $puesto_postu) {
+        
+        //dd($puesto_postu);
+        /*foreach ($puesto_postu as $puesto_postu) {
             $data3[]=$puesto_postu->idpuestotrabajo;
         }
-
+        //dd($data3);
         $puestoTrabajo=DB::table('puesto_trabajo')->whereIn('idpuestotrabajo',$data3)->get();
-
-        return view('postulante.show')->with('puestoTrabajo',$puestoTrabajo);
+        //dd($puestoTrabajo);*/
+        return view('postulante.show')->with('puesto_postu',$puesto_postu);//->with('puestoTrabajo',$puestoTrabajo);
 
     }
 
