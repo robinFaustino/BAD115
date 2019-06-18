@@ -1,3 +1,8 @@
+<?php
+
+use App\Empresa;
+
+?>
 @extends ('admin.template.main')
 
 @section ('contenido')
@@ -7,7 +12,7 @@
   <!-- Main jumbotron for a primary marketing message or call to action -->
   <div class="jumbotron">
     <div class="container">
-      <h1 class="display-3">Ofertas de Trabajo</h1>
+      <h1 class="display-3">Proceso de postulaciones</h1>
         <div class="row">
           <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -18,17 +23,28 @@
                     <th>Nombre</th>
                     <th>Descripcion</th>
                     <th>Estado</th>
-                    <th>Experiencia</th>
-                    <th>Opciones</th>
+                    <th>Proceso</th>
+                    <th>Examen</th>
                   </thead>
-                  <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                  </tr>
+                  @foreach ($puestoTrabajo as $puesto)
+                <tr>
+                  
+                  <?php                 
+
+                  $emp=Empresa::findOrFail($puesto->idempresa);
+
+                  ?>
+                  <td>{{$emp->nombre}}</td>
+                  <td>{{$puesto->nombre}}</td>
+                  <td>{{$puesto->descripcion}}</td>
+                  <td>{{$puesto->estado}}</td>
+                  <td>{{}}</td>
+                  <td>{{}}</td>
+                  <td>
+                    
+                  </td>
+                </tr>
+                @endforeach
                 </table>
               </div>
             </div>
@@ -37,7 +53,11 @@
     </div>
   </div>
   <hr>
-
+<div class="form-group">
+    <center>              
+        <a href="{{ url('postulante') }}"><button class="btn btn-danger">Regresar</button></a>
+    </center>
+</div>
 
 </main>
 

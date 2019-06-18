@@ -66,7 +66,7 @@
                   <center>
                   <h3>Proceso de mis postulaciones</h3>
                   <p>...</p>
-                  <p><a href="#" class="btn btn-primary" role="button">Ingresar</a></p>
+                  <p><a href="{{ url('postulante/show') }}" class="btn btn-primary" role="button">Ingresar</a></p>
                   </center>
                 </div>
           </div>

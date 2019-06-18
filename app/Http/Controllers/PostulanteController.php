@@ -96,6 +96,28 @@ class PostulanteController extends Controller
         return Municipio::where('iddepartamento',$id)->get();
     }
 
+    public function show(Request $request){
+
+        $data=\Auth::user()->id;
+
+        $postulante = DB::table('postulante')->select('idpostulante')->where('iduser','=',$data)->get();
+        
+        foreach ($postulante as $postulante) {
+            $data2[]=$postulante->idpostulante;
+        }
+
+        $puesto_postu=DB::table('postulante_puesto')->whereIn('idpostulante',$data2)->get();
+
+        foreach ($puesto_postu as $puesto_postu) {
+            $data3[]=$puesto_postu->idpuestotrabajo;
+        }
+
+        $puestoTrabajo=DB::table('puesto_trabajo')->whereIn('idpuestotrabajo',$data3)->get();
+
+        return view('postulante.show')->with('puestoTrabajo',$puestoTrabajo);
+
+    }
+
     	   
 //Request $request);//
     /**
