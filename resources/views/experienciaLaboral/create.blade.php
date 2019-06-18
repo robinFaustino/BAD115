@@ -50,6 +50,16 @@
       <label for="correoorganizacion">Correo de la organizacion</label>
       <input type="email"  name="correoorganizacion" class="form-control" id="correoorganizacion" placeholder="Example@mail.com">
     </div>
+
+    <div class="form-group">
+      <label for="idpostulante">Postulante</label>  
+        <select name="idpostulante" id="idpostulante" class="form-control">
+          <option selected value="">Seleccione Perfil postulante</option>
+            @foreach ($postu as $postu)
+              <option value="{{$postu->idpostulante}}">{{$postu->firtsname}},{{$postu->lastname}}</option>
+            @endforeach  
+        </select>
+    </div>
  
   	<div class="form-group">
   		<center>

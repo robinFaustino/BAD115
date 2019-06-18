@@ -33,7 +33,7 @@ use App\Empresa;
                     <td>{{$puestos->anosexp}} Año</td>
                   	<td>
                     
-                    <a href="postulante/create">
+                    <a href="puestoOfertas/{{$puestos->idpuestotrabajo}}">
                       <button type="button" class="btn btn-primary btn-xs">
                         <span class="glyphicon glyphicon-ok"></span>Aplicar
                       </button>

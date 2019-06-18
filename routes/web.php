@@ -33,6 +33,17 @@ Route::resource('logro','LogroController');
     return view('postulante/menu');
 });*/
 
+Route::get('puestoOfertas/{idpuestotrabajo}', function($idpuestotrabajo){
+
+	$id=$idpuestotrabajo;
+	$pais= DB::table('pais')->get();
+	$departamento= DB::table('departamento')->get();
+    $municipio= DB::table('municipio')->get();
+	//dd($id);
+	//dd($pais);
+
+	return view('postulante.create')->with('paise',$pais)->with('id',$id)->with('dep',$departamento)->with('mun',$municipio);
+});
 route::resource('postulante','PostulanteController');
 Route::resource('puesto','Puesto_TrabajoController');
 //Route::resource('postulante/curriculum','PostulanteController');

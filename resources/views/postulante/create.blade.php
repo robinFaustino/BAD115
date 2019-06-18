@@ -6,15 +6,16 @@
 			<div class="row">
         <h3><center>Mi Curriculum</center></h3>
 				<div class="col-md-8 col-md-offset-2">
-          <a href="{{ url('certificacion/create') }}">
-              <button type="button" class="btn btn-info ">Certificacion</button></a>
-          <a href="{{ url('conocimientoAcademico/create') }}">
-              <button type="button" class="btn btn-info ">Conocimiento Academico</button></a>
-          <a href="{{ url('experienciaLaboral/create') }}">
-              <button type="button" class="btn btn-info ">Experiencia Laboral</button></a>
-          <a href="{{ url('recomendacion/create') }}">
-              <button type="button" class="btn btn-info ">Recomendaciones</button></a>
-					<br>
+
+@if (count($errors)>0)
+    <div class="alert alert-danger">
+      <ul>
+        @foreach ($errors->all() as $error)
+          <li>{{$error}}</li>
+        @endforeach 
+      </ul> 
+    </div>
+@endif          		
 					<hr>
 					{!! Form::open(array('url'=>'postulante','method'=>'POST','autocomplete'=>'off', 'enctype'=> 'multipart/form-data')) !!}
   					<div class="panel panel-default">
@@ -101,6 +102,8 @@
                 <label for="avatar">Imagen</label>
                 <input type="file" name="avatar" class="form-group">
               </div>
+
+              <input id="idpuestotrabajo" name="idpuestotrabajo" type="hidden" value="{{$id}}">
   
   							<!--<div class="form-group">
     							<label for="exampleInputFile">File input</label>
