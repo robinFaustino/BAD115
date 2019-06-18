@@ -73,7 +73,21 @@ class ExperienciaLaboralController extends Controller
     public function show(Request $request)
     {
 
-        $experiencia = DB::select('SELECT * FROM experiencia_laboral');
+        $data=\Auth::user()->id;
+        $postulante = DB::table('postulante')->select('idpostulante')->where('iduser','=',$data)->get();
+        //dd($postulante);
+        foreach ($postulante as $postulante) {
+            $data2[]=$postulante->idpostulante;
+        }
+        //dd($data2);
+        $expe_postu = DB::table('experiencia_laboral_postulante')->whereIn('idpostulante',$data2)->get();
+        //dd($expe_postu);
+        foreach ($expe_postu as $expe_postu) {
+            $data3[]=$expe_postu->idexperiencialaboral;
+        }
+        //dd($data3);
+        $experiencia=DB::table('experiencia_laboral')->whereIn('idexperiencialaboral',$data3)->get();
+        //dd($experiencia);
 
         return view('experienciaLaboral.registros')->with('experiencia',$experiencia);
 
@@ -103,6 +117,16 @@ class ExperienciaLaboralController extends Controller
     public function destroy($id)
     {
         $experiencia=ExperienciaLaboral::findOrFail($id);
+        $data=$experiencia->idexperiencialaboral;
+        $table1 = DB::table('experiencia_laboral_postulante')->select('id')->where('idexperiencialaboral','=',$data)->get();
+
+        foreach ($table1 as $table1) {
+            $dato2 = $table1->id;
+        }
+
+        $id2=EXPERIENCIA_POSTULANTE::findOrFail($dato2);
+
+        $id2->delete();
         $experiencia->delete();
         
         return Redirect::to('experienciaLaboral/show');

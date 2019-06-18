@@ -36,7 +36,21 @@ class Conocimiento_AcademicoController extends Controller
     public function show(Request $request)
     {
 
-        $conoci = DB::select('SELECT * FROM conocomiento_academico');
+        $data=\Auth::user()->id;
+        $postulante = DB::table('postulante')->select('idpostulante')->where('iduser','=',$data)->get();
+        //dd($postulante);
+        foreach ($postulante as $postulante) {
+            $data2[]=$postulante->idpostulante;
+        }
+        //dd($data2);
+        $cono_postu = DB::table('postulante_conocimiento')->whereIn('idpostulante',$data2)->get();
+        //dd($cono_postu);
+        foreach ($cono_postu as $cono_postu) {
+            $data3[]=$cono_postu->idconocimientoacademino;
+        }
+        //dd($data3);
+        $conoci=DB::table('conocomiento_academico')->whereIn('idconocimientoacademino',$data3)->get();
+        //dd($conoci);
 
         return view('conocimientoAcademico.Registro')->with('conoci',$conoci);
 
@@ -93,6 +107,15 @@ class Conocimiento_AcademicoController extends Controller
     public function destroy($id)
     {
         $conoci=Conocimiento_Academico::findOrFail($id);
+        $data=$conoci->idconocimientoacademino;
+        $table1 = DB::table('postulante_conocimiento')->select('id')->where('idconocimientoacademino','=',$data)->get();
+        
+        foreach ($table1 as $table1) {
+            $dato2 = $table1->id;
+        }
+        
+        $id2=Postulante_Conocimiento::findOrFail($dato2);
+        $id2->delete();
         $conoci->delete();
         
         return Redirect::to('conocimientoAcademico/show');

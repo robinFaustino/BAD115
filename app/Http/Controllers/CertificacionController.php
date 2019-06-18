@@ -65,7 +65,21 @@ class CertificacionController extends Controller
     public function show(Request $request)
     {
 
-        $certificacion = DB::select('SELECT * FROM certificacion');
+        //$certificacion = DB::select('SELECT * FROM certificacion');
+        $data=\Auth::user()->id;
+        $postulante = DB::table('postulante')->select('idpostulante')->where('iduser','=',$data)->get();
+        
+        foreach ($postulante as $postulante) {
+            $data2[]=$postulante->idpostulante;
+        }
+        
+        $certi_postu = DB::table('certificacion_postulante')->whereIn('idpostulante',$data2)->get();
+        
+        foreach ($certi_postu as $certi_postu) {
+            $data3[]=$certi_postu->idcertificacion;
+        }
+
+        $certificacion=DB::table('certificacion')->whereIn('idcertificacion',$data3)->get();
 
         return view('certificacion.registros')->with('certificacion',$certificacion);
 
@@ -94,6 +108,15 @@ class CertificacionController extends Controller
     public function destroy($id)
     {
         $certificacion=Certificacion::findOrFail($id);
+        $data=$certificacion->idcertificacion;
+        $table1 = DB::table('certificacion_postulante')->select('id')->where('idcertificacion','=',$data)->get();
+        foreach ($table1 as $table1) {
+            $dato2 = $table1->id;
+        }
+        //dd($dato2);
+        $id2=Certificacion_Postulante::findOrFail($dato2);
+        //dd($id2);
+        $id2->delete();
         $certificacion->delete();
         
         return Redirect::to('certificacion/show');
