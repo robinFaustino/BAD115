@@ -105,5 +105,9 @@
 	<script src="{{ asset('pluglins/bootstrap/js/bootstrap.js') }}"></script>
   <script src="{{ asset('pluglins/bootstrap/js/modes-warning.js') }}"></script>
   @yield('script')
+  <!-- jQuery 2.1.4 -->
+  <script src="{{asset('js/jQuery-2.1.4.min.js')}}"></script>
+  <script src="{{asset('js/departamento.js')}}"></script>
+  <script src="{{asset('js/municipio.js')}}"></script>
 </body>
 </html>
