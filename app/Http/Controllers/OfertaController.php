@@ -18,7 +18,7 @@ class OfertaController extends Controller
 
     public function index(Request $request)
     {
-    	$puestos = DB::select('SELECT * FROM puesto_trabajo');
+    	$puestos = DB::table('puesto_trabajo')->where('estado','=','1')->get();
     	//dd($puestos);
       	return view('ofertas.index')->with('puestos',$puestos);
     }

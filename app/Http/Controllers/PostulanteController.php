@@ -86,6 +86,7 @@ class PostulanteController extends Controller
         $postulante_puesto = new Postulante_Puesto;
         $postulante_puesto->idpuestotrabajo = $request->get('idpuestotrabajo');
         $postulante_puesto->idpostulante = $postulante->idpostulante;
+        $postulante_puesto->estado='0';
         $postulante_puesto->save();
 
         return view('postulante.index');

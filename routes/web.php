@@ -47,6 +47,16 @@ Route::get('puestoOfertas/{idpuestotrabajo}', function($idpuestotrabajo){
 
 route::resource('postulante','PostulanteController');
 
+Route::get('postulante/enviarOferta/{id}', function($id){
+  
+    $enviar=App\Postulante_Puesto::findOrFail($id);
+    $enviar->estado='1';
+    $enviar->update();
+    //dd($enviar->estado);
+    
+    return Redirect::to('postulante/show');
+});
+
 Route::resource('empresas','EmpresaController');
 Route::resource('empresas_ofertar','Puesto_TrabajoController');
 //Route::post('empresa','EmpresaController@index2');

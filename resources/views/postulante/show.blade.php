@@ -38,9 +38,22 @@ use App\Puesto_Trabajo;
                   <td>{{$pos->lastname}}, {{$pos->firtsname}}</td>
                   <td>{{$pues->nombre}}</td>
                   <td>{{$emp->nombre}}</td>
+                  <?php if($puesto_postu->estado==0): ?>
+                  <td>No enviado</td>
+                  <?php  else: ?>
+                  <td>Enviado</td>
+                  <?php endif ?>
                   <td>
-                    <a href="#"><button>Acpetar</button></a>
-                    <a href="#"><button>Cancelar</button></a>
+                    <a href="enviarOferta/{{$puesto_postu->id}}">
+                      <button type="button" class="btn btn-primary btn-xs">
+                        <span class="glyphicon glyphicon-globe"></span>Enviar
+                      </button>
+                    </a>
+                    <a href="#">
+                      <button type="button" class="btn btn-danger btn-xs">
+                        <span class="glyphicon glyphicon-trash"></span>Eliminar
+                      </button>
+                    </a>
                   </td>
                   </tr>
                 @endforeach
