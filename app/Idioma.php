@@ -13,12 +13,11 @@ class Idioma extends Model
     public $timestamps=false;
 
     protected $fillable = [
-    	'idhabilidadlenguaje',
     	'nombre',
     ];
 
     public function habilidadLenguaje()
     {
-    	return $this->belonsTo('App\HabilidadLenguaje');
+    	return $this->hasMany('App\HabilidadLenguaje');
     }  
 }

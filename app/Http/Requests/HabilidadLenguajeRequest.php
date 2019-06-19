@@ -24,7 +24,6 @@ class HabilidadLenguajeRequest extends FormRequest
     public function rules()
     {
         return [
-            'idpostulante' => 'required',
             'tipo' => 'required|max:50',
             'nivel' => 'required|max:10',
 

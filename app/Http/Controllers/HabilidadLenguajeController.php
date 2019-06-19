@@ -7,6 +7,7 @@ use App\Postulante;
 use App\HabilidadLenguaje;
 use App\Http\Requests\HabilidadLenguajeRequest;
 use DB;
+use App\Idioma;
 
 class HabilidadLenguajeController extends Controller
 {
@@ -19,13 +20,21 @@ class HabilidadLenguajeController extends Controller
     {
         if ($request)
         {
-            $postulante = DB::select('SELECT * FROM postulante');
+
+             $data=\Auth::user()->id;
+
+            $postulante = DB::table('postulante')->where('iduser','=',$data)->get();
+
+            foreach($postulante as $postulante){
+                $idpostulante[]=$postulante->idpostulante;
+                $nombre[]=$postulante->firtsname;
+            }
             $query=trim($request->get('searchText'));
-            $habilidadLenguaje=DB::table('habilidad_lenguaje')->where('tipo','LIKE','%'.$query.'%')
+            $habilidadLenguaje=DB::table('habilidad_lenguaje')->where('idpostulante','=',$idpostulante)
             ->orderBy('idhabilidadlenguaje','ASC')
             ->paginate(7);
             return view('habilidadLenguaje.index',["habilidadLenguaje"=>$habilidadLenguaje,"searchText"=>$query])
-                    ->with('postulante',$postulante);
+                    ->with('nombre',$nombre);
         }
     }
 
@@ -36,9 +45,9 @@ class HabilidadLenguajeController extends Controller
      */
     public function create()
     {
-        $postulantes = DB::select('SELECT * FROM postulante');
+        $idioma = DB::select('SELECT * FROM idioma');
         return view('habilidadLenguaje.create')
-                ->with('postulantes', $postulantes);
+                ->with('idioma', $idioma);
     }
 
     /**
@@ -49,8 +58,15 @@ class HabilidadLenguajeController extends Controller
      */
     public function store(HabilidadLenguajeRequest $request)
     {
+         $data=\Auth::user()->id;
+        $postulante = DB::table('postulante')->where('iduser','=',$data)->get();
+
+        foreach( $postulante as $postulante )
+        {
         $habilidadLenguaje = new HabilidadLenguaje($request->all());
+        $habilidadLenguaje->idpostulante = $postulante->idpostulante;
         $habilidadLenguaje->save(); 
+        }
 
          flash('
             <h4>Registro de habilidad de lenguaje </h4>
@@ -79,12 +95,12 @@ class HabilidadLenguajeController extends Controller
      */
     public function edit($id)
     {
-        $postulante = DB::select('SELECT * FROM postulante');
+        $idioma = DB::select('SELECT * FROM idioma');
         $habilidadLenguaje = HabilidadLenguaje::find($id);
 
         return view('habilidadLenguaje.edit')
                 ->with('habilidadLenguaje',$habilidadLenguaje)
-                ->with('postulante',$postulante);
+                ->with('idioma',$idioma);
     }
 
     /**

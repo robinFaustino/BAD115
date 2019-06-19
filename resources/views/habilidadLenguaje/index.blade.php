@@ -8,7 +8,7 @@
 					<hr>
 					
   			<div class="panel panel-default">
- 				<div class="panel-heading">Publicaciones del postulante</div>
+ 				<div class="panel-heading">Habilidades de Lenguaje del postulante</div>
  				<div class="panel-body">
  					<div class="row">
 				        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -48,7 +48,7 @@
    				</div>
 			</div>
 
-			<a href="{{ url('/admin') }}"><button class="btn btn-danger">Regresar</button></a>
+			<a href="{{ url('habilidad_lenguaje/show') }}"><button class="btn btn-danger">Regresar</button></a>
 		</div>
 	</div>
 </div>

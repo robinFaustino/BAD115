@@ -23,16 +23,6 @@
   					<div class="panel panel-default">
  						<div class="panel-heading">Crear Idioma</div>
  						<div class="panel-body">
-
- 							<div class="form-group">
-                  <label for="idhabilidadlenguaje">Habilidad Lenguaje</label>
-               <select name="idhabilidadlenguaje" id="idhabilidadlenguaje" class="form-control" required>
-                 <option selected value="">-- Seleccione un postulante --</option>
-                 @foreach($habilidadLenguaje as $habilidadLenguaje)
-                 <option value="{{$habilidadLenguaje->idhabilidadlenguaje}}"> {{$habilidadLenguaje->tipo}}</option>
-                 @endforeach
-               </select>
-                </div>
     
 							<div class="form-group">
     							<label for="nombre">Nombre</label>

@@ -14,6 +14,7 @@ class HabilidadLenguaje extends Model
 
     protected $fillable = [
     	'idpostulante',
+        'ididioma',
     	'tipo',
     	'nivel',
     ];
@@ -24,6 +25,6 @@ class HabilidadLenguaje extends Model
 
     public function idioma()
     {
-    	return $this->hasMany('App\Idioma');
+    	return $this->belongsTo('App\Idioma');
     }
 }

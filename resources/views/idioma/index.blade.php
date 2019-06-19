@@ -15,13 +15,11 @@
 				            <div class="table-responsive">
 				                <table class="table table-striped table-bordered table-condensed table-hover">
 				                    <thead>
-				                    	<th>Habilidad Lenguaje</th>
 				                        <th>Nombre</th>
 				                        <th>Acciones</th>
 				                    </thead>
 				                    @foreach ($idioma as $idioma)
 				                    <tr>
-				                    	<td>{{ $idioma->idhabilidadlenguaje}}</td>
 				                        <td>{{ $idioma->nombre}}</td>
 				                        
 				                        <td>

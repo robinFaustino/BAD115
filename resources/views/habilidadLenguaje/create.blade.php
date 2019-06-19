@@ -16,23 +16,26 @@
     @endif
 
  		{!! Form::open(array('url'=>'habilidad_lenguaje','method'=>'POST','autocomplete'=>'off')) !!}
-
-    @if(Auth::user()->usuario())
-
-                <div class="form-group">
-                  <label for="idpostulante">Postulante</label>
-               <select name="idpostulante" id="idpostulante" class="form-control" required>
-                 <option selected value="">-- Seleccione un postulante --</option>
-                 @foreach($postulantes as $postulante)
-                 <option value="{{$postulante->idpostulante}}"> {{$postulante->firtsname}}</option>
-                 @endforeach
-               </select>
-                </div>
-                @endif
-
+        
+        <div class="form-group">
+        <label for="ididioma">Idioma</label>
+        <select name="ididioma" id="ididioma" class="form-control">
+          <option selected value="">-- Seleccione una Opcion --</option>
+          @foreach($idioma as $idioma)
+          <option value="{{ $idioma->ididioma }}">{{ $idioma->nombre }}</option>
+          @endforeach
+        </select>
+      </div>
+        
       <div class="form-group">
         <label for="tipo">Tipo</label>
-        <input type="tipo" name='tipo' class="form-control" id="titulo" placeholder="tipo...">
+        <select id="tipo" name='tipo' class="form-control">
+          <option selected value="">-- Seleccione una Opcion --</option>
+          <option value="Escritura"> Escritura</option>
+          <option value="Lectura"> Lectura</option>
+          <option value="Conversacion"> Conversacion</option>
+          <option value="Escucha"> Escucha</option>
+        </select>
       </div>
 
         <div class="form-group">
