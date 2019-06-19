@@ -16,20 +16,7 @@
     @endif
 
  		{!! Form::open(array('url'=>'publicacion','method'=>'POST','autocomplete'=>'off')) !!}
-
-    @if(Auth::user()->usuario())
-
-                <div class="form-group">
-                  <label for="idpostulante">Postulante</label>
-               <select name="idpostulante" id="idpostulante" class="form-control" required>
-                 <option selected value="">-- Seleccione un postulante --</option>
-                 @foreach($postulantes as $postulante)
-                 <option value="{{$postulante->idpostulante}}"> {{$postulante->firtsname}}</option>
-                 @endforeach
-               </select>
-                </div>
-
-                @endif
+    
  		<div class="form-group">
     		<label for="tipo">Tipo</label>
     		<select name="tipo" id="tipo" class="form-control" onmousedown="habilitar()">
@@ -78,7 +65,7 @@
 
 <div class="form-group">
     <center>              
-        <a href="{{ url('publicacion') }}"><button class="btn btn-danger">Regresar</button></a>
+        <a href="{{ url('publicacion/show') }}"><button class="btn btn-danger">Regresar</button></a>
     </center>
 </div>
 @endsection

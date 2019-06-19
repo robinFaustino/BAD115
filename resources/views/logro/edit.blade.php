@@ -21,19 +21,6 @@
       <div class="panel panel-default">
         <div class="panel-heading">Editar Publicacion</div>
           <div class="panel-body">
-            
-    @if(Auth::user()->usuario())
-
-                <div class="form-group">
-                  <label for="idpostulante">Postulante</label>
-               <select name="idpostulante" id="idpostulante" class="form-control" required>
-                 <option selected value="">-- Seleccione un postulante --</option>
-                 @foreach($postulante as $postulante)
-                 <option value="{{$postulante->idpostulante}}"> {{$postulante->firtsname}}</option>
-                 @endforeach
-               </select>
-                </div>
-                @endif
 
     <div class="form-group">
         <label for="idtipologro">Tipo</label>

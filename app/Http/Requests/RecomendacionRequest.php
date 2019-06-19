@@ -25,7 +25,6 @@ class RecomendacionRequest extends FormRequest
     public function rules()
     {
         return [
-            'idpostulante' => 'required',
             'nombre' => 'required|max:75',
             'telefono' => 'required|max:8', 
             'correo' => 'required|max:50',

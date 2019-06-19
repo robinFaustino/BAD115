@@ -14,7 +14,7 @@ class Recomendacion extends Model
     public $timestamps=false;
 
     protected $fillable = [
-    	'idpostulante','nombre','telefono','correo','institucion',
+    	'nombre','telefono','correo','institucion',
     ];
 
     public function postulante()

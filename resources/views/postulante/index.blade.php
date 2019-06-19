@@ -64,16 +64,69 @@
               <img src="..." alt="...">
                 <div class="caption">
                   <center>
-                  <h3>Proceso de mis postulaciones</h3>
+                  <h3>Proceso de Postulaciones</h3>
                   <p>...</p>
                   <p><a href="{{ url('postulante/show') }}" class="btn btn-primary" role="button">Ingresar</a></p>
                   </center>
                 </div>
           </div>
         </div>
+        
+
+        <div class="col-sm-6 col-md-4">
+          <div class="thumbnail">
+              <img src="..." alt="...">
+                <div class="caption">
+                  <center>
+                  <h3>Publicaciones</h3>
+                  <p>...</p>
+                  <p><a href="{{ url('publicacion/show') }}" class="btn btn-primary" role="button" >Ingresar</a></p>
+                  </center>
+                </div>
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-md-4">
+          <div class="thumbnail">
+              <img src="..." alt="...">
+                <div class="caption">
+                  <center>
+                  <h3>Recomendaciones</h3>
+                  <p>...</p>
+                  <p><a href="{{ url('recomendacion/show') }}" class="btn btn-primary" role="button" >Ingresar</a></p>
+                  </center>
+                </div>
+          </div>
+        </div>
+
+           <div class="col-sm-6 col-md-4">
+          <div class="thumbnail">
+              <img src="..." alt="...">
+                <div class="caption">
+                  <center>
+                  <h3>Logros</h3>
+                  <p>...</p>
+                  <p><a href="{{ url('logro/show') }}" class="btn btn-primary" role="button" >Ingresar</a></p>
+                  </center>
+                </div>
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-md-4">
+          <div class="thumbnail">
+              <img src="..." alt="...">
+                <div class="caption">
+                  <center>
+                  <h3>Habilidades de Lenguaje</h3>
+                  <p>...</p>
+                  <p><a href="{{ url('habilidad_lenguaje/show') }}" class="btn btn-primary" role="button">Ingresar</a></p>
+                  </center>
+                </div>
+          </div>
+        </div>
+
 
 		</div>
-
  	</div>
   <div class="form-group">
         <center>  

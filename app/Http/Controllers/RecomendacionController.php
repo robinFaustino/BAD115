@@ -19,14 +19,22 @@ class RecomendacionController extends Controller
      */
     public function index(Request $request)
     {
-        if ($request)
+            if ($request)
         {
-            $postulante = DB::select('SELECT * FROM postulante');
+            $data=\Auth::user()->id;
+
+            $postulante = DB::table('postulante')->where('iduser','=',$data)->get();
+
+            foreach($postulante as $postulante){
+                $idpostulante[]=$postulante->idpostulante;
+                $nombre[]=$postulante->firtsname;
+            }
+
             $query=trim($request->get('searchText'));
-            $recomendacion=DB::table('recomendacion')->where('nombre','LIKE','%'.$query.'%')
+            $recomendacion=DB::table('recomendacion')->where('idpostulante','=', $idpostulante)
             ->orderBy('idrecomendacion','ASC')
             ->paginate(7);
-            return view('recomendacion.index',["recomendacion"=>$recomendacion,"searchText"=>$query])->with('postulante',$postulante);
+            return view('recomendacion.index',["recomendacion"=>$recomendacion,"searchText"=>$query])->with('nombre',$nombre);
         }
 
     }
@@ -36,7 +44,7 @@ class RecomendacionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request)
+    public function create()
     {
 
         $postulantes=DB::select('SELECT * FROM postulante');
@@ -52,9 +60,16 @@ class RecomendacionController extends Controller
      */
     public function store(RecomendacionRequest $request)
     {
-        $recomendacion = new Recomendacion($request->all()); 
+        $data=\Auth::user()->id;
+        $postulante = DB::table('postulante')->where('iduser','=',$data)->get();
 
+        foreach( $postulante as $postulante )
+        {
+        $recomendacion = new Recomendacion($request->all()); 
+        $recomendacion->idpostulante=$postulante->idpostulante;
         $recomendacion->save();
+
+        }
 
          flash('
             <h4>Registro de Recomendacion</h4>
@@ -73,7 +88,7 @@ class RecomendacionController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('recomendacion.menu');
     }
 
     /**

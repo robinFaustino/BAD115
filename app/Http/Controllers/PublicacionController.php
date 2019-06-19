@@ -20,12 +20,20 @@ class PublicacionController extends Controller
     {
         if ($request)
         {
-            $postulante = DB::select('SELECT * FROM postulante');
+            $data=\Auth::user()->id;
+
+            $postulante = DB::table('postulante')->where('iduser','=',$data)->get();
+
+            foreach($postulante as $postulante){
+                $idpostulante[]=$postulante->idpostulante;
+                $nombre[]=$postulante->firtsname;
+            }
+
             $query=trim($request->get('searchText'));
-            $publicacion=DB::table('publicacion')->where('titulo','LIKE','%'.$query.'%')
-            ->orderBy('idpublicacion','ASC')
+            $publicacion=DB::table('publicacion')->where('idpostulante','=', $idpostulante)
+            ->orderBy('idpubicacion','ASC')
             ->paginate(7);
-            return view('publicacion.index',["publicacion"=>$publicacion,"searchText"=>$query])->with('postulante',$postulante);
+            return view('publicacion.index',["publicacion"=>$publicacion,"searchText"=>$query])->with('nombre',$nombre);
         }
     }
 
@@ -50,10 +58,20 @@ class PublicacionController extends Controller
      */
     public function store(PublicacionRequests $request)
     {
-        $publicacion = new Publicacion($request->all());
-        $publicacion->save(); 
 
-         flash('
+        $data=\Auth::user()->id;
+
+        $postulante = DB::table('postulante')->where('iduser','=',$data)->get();
+
+        foreach( $postulante as $postulante )
+        {
+
+        $publicacion = new Publicacion($request->all());
+        $publicacion->idpostulante=$postulante->idpostulante;
+        $publicacion->save();
+        }
+
+        flash('
             <h4>Registro de Publicacion </h4>
             <p>La publicacion <strong>' . $publicacion->titulo . ' '.'</strong> se ha registrado correctamente.</p>
         ')->success()->important();
@@ -67,9 +85,9 @@ class PublicacionController extends Controller
      * @param  \App\Publicacion  $publicacion
      * @return \Illuminate\Http\Response
      */
-    public function show(Publicacion $publicacion)
+    public function show()
     {
-        //
+        return view('publicacion.menu');
     }
 
     /**
@@ -80,12 +98,10 @@ class PublicacionController extends Controller
      */
     public function edit($id)
     {
-        $postulantes = DB::select('SELECT * FROM postulante');
         $publicacion = Publicacion::find($id);
 
         return view('publicacion.edit')
-                ->with('publicacion',$publicacion)
-                ->with('postulantes',$postulantes);
+                ->with('publicacion',$publicacion);
     }
 
     /**

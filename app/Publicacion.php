@@ -8,7 +8,7 @@ class Publicacion extends Model
 {
     protected $table = "publicacion"; 
 
-	protected $primaryKey = 'idpublicacion'; 
+	protected $primaryKey = 'idpubicacion'; 
 
     public $timestamps=false;
 

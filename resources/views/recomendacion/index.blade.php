@@ -8,7 +8,14 @@
 					<hr>
 					
   			<div class="panel panel-default">
- 				<div class="panel-heading">Recomendaciones del postulante</div>
+ 				<div class="panel-heading">Recomendaciones del postulante
+ 					<strong>
+ 						@foreach($nombre as $nombre)
+ 						{{$nombre}}
+ 						@endforeach
+ 					</strong>
+
+ 				</div>
  				<div class="panel-body">
  					<div class="row">
 				        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -20,7 +27,6 @@
 				                        <th>Correo</th>
 				                        <th>Institucion</th>
 				                        <th>Opciones</th>
-				                        <th>Acciones</th>
 				                    </thead>
 				                    @foreach ($recomendacion as $recomendacion)
 				                    <tr>

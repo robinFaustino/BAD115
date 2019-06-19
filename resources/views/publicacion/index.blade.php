@@ -8,7 +8,11 @@
 					<hr>
 					
   			<div class="panel panel-default">
- 				<div class="panel-heading">Publicaciones del postulante</div>
+ 				<div class="panel-heading">Publicaciones del postulante <strong> 
+ 					@foreach($nombre as $nombre)
+ 					{{$nombre}}
+ 					@endforeach
+ 				 </strong> </div>
  				<div class="panel-body">
  					<div class="row">
 				        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -34,12 +38,12 @@
 
 				                        
 				                        <td>
-				                            <a href="{{route('publicacion.edit',$publicacion->idpublicacion)}}">
+				                            <a href="{{route('publicacion.edit',$publicacion->idpubicacion)}}">
                       <button type="button" class="btn btn-info btn-xs">
                         <span class="glyphicon glyphicon-cog"></span>Editar
                       </button>
                     </a>
-				                           <a href="#" data-target="#modal-delete-{{$publicacion->idpublicacion}}" data-toggle="modal">
+				                           <a href="#" data-target="#modal-delete-{{$publicacion->idpubicacion}}" data-toggle="modal">
                       <button type="button" class="btn btn-danger btn-xs">
                         <span class="glyphicon glyphicon-trash"></span>Eliminar
                       </button>
@@ -58,7 +62,7 @@
    				</div>
 			</div>
 
-			<a href="{{ url('/admin') }}"><button class="btn btn-danger">Regresar</button></a>
+			<a href="{{ url('publicacion/show') }}"><button class="btn btn-danger">Regresar</button></a>
 		</div>
 	</div>
 </div>

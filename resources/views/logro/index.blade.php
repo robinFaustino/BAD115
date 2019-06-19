@@ -8,14 +8,20 @@
 					<hr>
 					
   			<div class="panel panel-default">
- 				<div class="panel-heading">Logros del Postulante </div>
+ 				<div class="panel-heading">Logros del Postulante 
+ 					<strong>
+ 						@foreach($nombre as $nombre)
+ 						{{$nombre}}
+ 						@endforeach
+ 					</strong>
+ 				</div>
  				<div class="panel-body">
  					<div class="row">
 				        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 				            <div class="table-responsive">
 				                <table class="table table-striped table-bordered table-condensed table-hover">
 				                    <thead>
-				                        <th>Tipo</th>
+				                        <th>Logro</th>
 				                        <th>Fecha Inicio</th>
 				                        <th>Fecha Fin</th>
 				                        <th>Descripcion</th>
@@ -56,7 +62,7 @@
    				</div>
 			</div>
 
-			<a href="{{ url('/admin') }}"><button class="btn btn-danger">Regresar</button></a>
+			<a href="{{ url('logro/show') }}"><button class="btn btn-danger">Regresar</button></a>
 		</div>
 	</div>
 </div>

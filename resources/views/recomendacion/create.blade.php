@@ -44,20 +44,6 @@
                   <input type="institucion" name='institucion' class="form-control" id="instirucion" placeholder="Institucion" required>
                 </div>
 
-               @if(Auth::user()->usuario())
-
-                <div class="form-group">
-                  <label for="idpostulante">Postulante</label>
-               <select name="idpostulante" id="idpostulante" class="form-control" required>
-                 <option selected value="">-- Seleccione un postulante --</option>
-                 @foreach($postulantes as $postulante)
-                 <option value="{{$postulante->idpostulante}}"> {{$postulante->firtsname}}</option>
-                 @endforeach
-               </select>
-                </div>
-
-                @endif
-
   							<div class="form-group">
     							<button class="btn btn-primary" type="submit">Guardar</button>
     							<a href="{{route('recomendacion.index')}}" class="btn btn-danger">Cancelar</a>

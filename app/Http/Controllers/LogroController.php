@@ -21,14 +21,21 @@ class LogroController extends Controller
     {
          if ($request)
         {
-            $postulante = DB::select('SELECT * FROM postulante');
+           $data=\Auth::user()->id;
+
+            $postulante = DB::table('postulante')->where('iduser','=',$data)->get();
+
+            foreach($postulante as $postulante){
+                $idpostulante[]=$postulante->idpostulante;
+                $nombre[]=$postulante->firtsname;
+            }
             $tipologro = DB::select('SELECT * FROM tipo_logro');
             $query=trim($request->get('searchText'));
-            $logro=DB::table('logro')->where('institucion','LIKE','%'.$query.'%')
+            $logro=DB::table('logro')->where('idpostulante','=',$idpostulante)
             ->orderBy('idlogro','ASC')
             ->paginate(7);
             return view('logro.index',["logro"=>$logro,"searchText"=>$query])
-                    ->with('postulante',$postulante)
+                    ->with('nombre',$nombre)
                     ->with('tipologro',$tipologro);
         }
     }
@@ -56,9 +63,15 @@ class LogroController extends Controller
      */
     public function store(LogroRequest $request)
     {
-        $logro = new Logro($request->all());
-        $logro->save(); 
+        $data=\Auth::user()->id;
+        $postulante = DB::table('postulante')->where('iduser','=',$data)->get();
 
+        foreach( $postulante as $postulante )
+        {
+        $logro = new Logro($request->all());
+        $logro->idpostulante=$postulante->idpostulante;
+        $logro->save(); 
+        }
          flash('
             <h4>Registro de Logro </h4>
             <p>El logro se ha registrado correctamente.</p>
@@ -73,9 +86,9 @@ class LogroController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
-        //
+        return view('logro.menu');
     }
 
     /**

@@ -24,7 +24,6 @@ class LogroRequest extends FormRequest
     public function rules()
     {
         return [
-            'idpostulante' => 'required',
             'idtipologro' => 'required',
             'fechainicio' => 'required',
             'fechafin' => 'required',

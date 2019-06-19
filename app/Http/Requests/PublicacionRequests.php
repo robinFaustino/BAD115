@@ -24,7 +24,6 @@ class PublicacionRequests extends FormRequest
     public function rules()
     {
         return [
-            'idpostulante' => 'required',
             'tipo' => 'required',
             'titulo' => 'required|max:75',
             'lugar' => 'required|max:75',
