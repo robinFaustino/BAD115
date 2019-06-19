@@ -37,7 +37,6 @@ class Usuario
        if ($this->auth->user()->usuario()) {
             return $next($request);
         } else {
-            abort(403);
-        }
+            dd('No eres Usuario tipo POstulante');        }
     }
 }

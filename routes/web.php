@@ -11,22 +11,30 @@
 |
 */
 
-Route::group(['middleware' => 'auth', 'admin'], function() {
+Route::group(['middleware' => ['auth']], function() {
 
 Route::get('/admin', function () {
     return view('admin/menu');
 });
 
+/*
+*********************************************************
+Grupo de rutas de acceso solo a usuarios administradores 
+*********************************************************
+*/
+Route::group(['middleware' => ['admin']], function(){
+
+    //Rutas para el CRUD de Usuarios
+    Route::resource('admin/usuarios','UsuarioController');
+    Route::get('admin/usuario','UsuarioController@create');
+
+    //ruta para el crud de idioma
+    Route::resource('idioma','IdiomaController');
+}); 
+
+
+
 Route::resource('ofertas','OfertaController');
-Route::resource('admin/usuarios','UsuarioController');
-Route::get('admin/usuario','UsuarioController@create');
-
-//Rutas para tipo de logro
-Route::resource('tipologro', 'TipoLogroController');
-
-//Ruta para logro
-Route::resource('logro','LogroController');
-
 
 /*Route::get('/ofertas', function () {
     return view('postulante/menu');
@@ -45,7 +53,7 @@ Route::get('puestoOfertas/{idpuestotrabajo}', function($idpuestotrabajo){
 });
 
 
-route::resource('postulante','PostulanteController');
+
 
 Route::get('postulante/enviarOferta/{id}', function($id){
   
@@ -56,12 +64,6 @@ Route::get('postulante/enviarOferta/{id}', function($id){
     
     return Redirect::to('postulante/show');
 });
-
-Route::resource('empresas','EmpresaController');
-Route::resource('empresas_ofertar','Puesto_TrabajoController');
-//Route::post('empresa','EmpresaController@index2');
-Route::post('empresa','EmpresaController@store');
-Route::post('puesto','Puesto_TrabajoController@store');
 
 
 Route::resource('puesto','Puesto_TrabajoController');
@@ -80,15 +82,12 @@ Route::post('/empresa/edit', function () {
 Route::resource('empresas/ofertar','EmpresaController');
 Route::get('empresas','EmpresaController@create');**/
 
-Route::resource('conocimientoAcademico','Conocimiento_AcademicoController');
-Route::resource('recomendacion','RecomendacionController');
-Route::resource('experienciaLaboral','ExperienciaLaboralController');
-Route::resource('certificacion','CertificacionController');
-
-
-
-//Rutas con rol de Empresa 
-Route::group(['middleware' => 'empresa'], function(){
+/*
+*********************************************************
+Grupo de rutas de acceso solo a usuarios de tipo empresa 
+*********************************************************
+*/
+Route::group(['middleware' => ['empresa']], function(){
 
 Route::resource('empresas','EmpresaController');
 Route::resource('empresas_ofertar','Puesto_TrabajoController');
@@ -99,9 +98,30 @@ Route::post('puesto','Puesto_TrabajoController@store');
 }); 
 
 
-//Rutas con rol de Usuario
+/*
+*********************************************************
+Grupo de rutas de acceso solo a usuarios de tipo postulante 
+*********************************************************
+*/
+Route::group(['middleware' => ['usuario']], function(){
 
-Route::group(['middleware' => 'usuario'], function(){
+route::resource('postulante','PostulanteController');
+Route::resource('conocimientoAcademico','Conocimiento_AcademicoController');
+Route::resource('recomendacion','RecomendacionController');
+Route::resource('experienciaLaboral','ExperienciaLaboralController');
+Route::resource('certificacion','CertificacionController');
+
+//ruta para el crud de experiencia laboral
+Route::resource('experienciaLaboral','ExperienciaLaboralController');
+
+//ruta para el crud de certificacion
+Route::resource('certificacion','CertificacionController');
+
+//Rutas para tipo de logro
+Route::resource('tipologro', 'TipoLogroController');
+
+//Ruta para logro
+Route::resource('logro','LogroController');
 
 //ruta para el crud de conocimiento academico
 Route::resource('conocimientoAcademico','Conocimiento_AcademicoController');
@@ -112,8 +132,7 @@ Route::resource('publicacion','PublicacionController');
 //ruta para el crud de habilidad_lenguaje
 Route::resource('habilidad_lenguaje', 'HabilidadLenguajeController');
 
-//ruta para el crud de idioma
-Route::resource('idioma','IdiomaController');
+Route::resource('recomendacion','RecomendacionController');
 
 //Route::post('puesto','Puesto_TrabajoController@agregarTrabajo');
 
@@ -127,8 +146,6 @@ Route::post('/empresa/edit', function () {
 Route::resource('empresas/ofertar','EmpresaController');
 Route::get('empresas','EmpresaController@create');**/
 
-
-Route::resource('recomendacion','RecomendacionController');
 });
 
 });
@@ -139,10 +156,6 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-//ruta para el crud de experiencia laboral
-Route::resource('experienciaLaboral','ExperienciaLaboralController');
 
-//ruta para el crud de certificacion
-Route::resource('certificacion','CertificacionController');
 // ruta para el crud de Pais
 Route::resource('pais','PaisController');

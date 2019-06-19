@@ -37,7 +37,7 @@ class Empresa
        if ($this->auth->user()->empresa()) {
             return $next($request);
         } else {
-            abort(403);
+            dd('No eres usuario de tipo empresa');
         }
     }
 }

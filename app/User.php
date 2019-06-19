@@ -45,15 +45,15 @@ class User extends Authenticatable
      * @return bool
      */
     public function admin() {
-        return $this->role_id = 1;
+        return $this->role_id === 1;
     }
 
       public function empresa() {
-        return $this->role_id = 2;
+        return $this->role_id === 2;
     }
 
     public function usuario() {
-        return $this->role_id = 3;
+        return $this->role_id === 3;
     }
 
 
