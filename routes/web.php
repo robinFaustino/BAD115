@@ -66,6 +66,7 @@ Route::post('puesto','Puesto_TrabajoController@store');
 
 Route::resource('puesto','Puesto_TrabajoController');
 
+Route::get('candidatos', 'EmpresaController@candidatos')->name('empresas.candidatos');
 
 //Route::post('puesto','Puesto_TrabajoController@agregarTrabajo');
 

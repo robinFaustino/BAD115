@@ -12,10 +12,11 @@
       <p>
         <a href="empresas/create" class="btn btn-primary my-2">Ofertar Puesto Trabajo</a>
         <a href="empresas_ofertar" class="btn btn-primary my-2">Ver ofertas</a>
+        <a href="{{ route('empresas.candidatos') }}" class="btn btn-primary my-2">Ver Candidatos</a>
 
-        <a href="" data-target="#modal-create" data-toggle="modal"><button class="btn btn-danger">Eliminar</button></a>
+        <!--<a href="" data-target="#modal-create" data-toggle="modal"><button class="btn btn-danger">Eliminar</button></a>
 
-        @include('empresas.modal')
+        @include('empresas.modal')-->
 
 
 

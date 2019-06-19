@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Empresa;
 use App\Departamento;
+use App\Postulante_Puesto;
+use App\Postulante;
+use App\Puesto_Trabajo;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\EmpresaFormRequest;
 use DB;
@@ -80,5 +83,23 @@ class EmpresaController extends Controller
         return view('empresas.create2')->with('depa',$depa)->with('empresa',$empresa);
         //return Redirect::to('empresas');
 
+    }
+
+    public function candidatos(Request $request)
+    {
+        $depa = DB::select('SELECT * FROM departamento');
+        //dd($depa);
+        $data=\Auth::user()->id;
+        //dd($data);
+        $puesto = DB::table('puesto_trabajo')->select('idpuestotrabajo')->where('iduser','=',$data)->get();
+        //dd($puesto);
+        foreach ($puesto as $puesto) {
+            $data2[]=$puesto->idpuestotrabajo;
+        }
+        //dd($data2);
+        $puesto_postu=DB::table('postulante_puesto')->whereIn('idpostulante',$data2)->orWhere('estado','=','1')->get();
+        //dd($puesto_postu);
+
+        return view('empresas.vistaCandidatos')->with('puesto_postu',$puesto_postu);
     } 
 }
