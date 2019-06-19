@@ -46,7 +46,7 @@ class PostulanteController extends Controller
 **/
     public function create(Request $request)
     {
-        $pais= DB::table('pais')->get();
+        $pais = DB::SELECT('SELECT * FROM obtenerpais()');
         $departamento= DB::table('departamento')->get();
         $municipio= DB::table('municipio')->get();
 

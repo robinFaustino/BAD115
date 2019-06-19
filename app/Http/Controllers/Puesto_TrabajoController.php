@@ -37,7 +37,8 @@ class Puesto_TrabajoController extends Controller
 
         $puesto->idempresa=$request->get('idempresa');
         $empresa=Empresa::findOrFail($puesto->idempresa);
-        $depa = DB::select('SELECT * FROM departamento');
+        //$depa = DB::select('SELECT * FROM departamento');
+        $depa = DB::SELECT('SELECT * FROM obtenerdep()');
         //dd($data);
         //return view('empresas.edit');
         //return Redirect::to('empresas');
@@ -88,7 +89,8 @@ class Puesto_TrabajoController extends Controller
     {
         $puesto=Puesto_Trabajo::findOrFail($id);
         $dep=Departamento::findOrFail($puesto->iddepartamento);
-        $depa=DB::select('SELECT * FROM departamento');
+        //$depa=DB::select('SELECT * FROM departamento');
+        $depa = DB::SELECT('SELECT * FROM obtenerdep()');
         $emp=Empresa::findOrFail($puesto->idempresa);
 
         return view("puesto.edit",["puesto"=>$puesto])->with('dep',$dep)->with('emp',$emp)->with('depa',$depa);
@@ -96,9 +98,11 @@ class Puesto_TrabajoController extends Controller
 
     public function show($id)
     {
-        $puesto=Puesto_Trabajo::findOrFail($id);
+        /*$puesto=Puesto_Trabajo::findOrFail($id);
         $puesto->estado= '1';
-        $puesto->update();
+        $puesto->update();*/
+        $data = (int) $id;
+        $result = DB::SELECT('SELECT * FROM actualizarEstd(?)',array($data));
         
         return Redirect::to('empresas');
     }
