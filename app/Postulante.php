@@ -13,7 +13,7 @@ class Postulante extends Model
     public $timestamps=false;
 
     protected $fillable = [
-    	'firtsname','secondsname','lastname','genero','fechanacimiento','dui','pasaporte','nit','nup','idpais','departamento','municipio','telefono','correo','iduser',
+    	'firtsname','secondsname','lastname','genero','fechanacimiento','dui','pasaporte','nit','nup','idpais','departamento','municipio','telefono','correo','iduser','photo',
     ];
 
     protected $guarded =[

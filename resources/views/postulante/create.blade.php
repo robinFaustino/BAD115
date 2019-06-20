@@ -99,8 +99,8 @@
  						 	</div>
 
               <div>
-                <label for="avatar">Imagen</label>
-                <input type="file" name="avatar" class="form-group">
+                <label for="photo">Imagen</label>
+                <input type="file" name="photo" class="form-group">
               </div>
 
               <input id="idpuestotrabajo" name="idpuestotrabajo" type="hidden" value="{{$id}}">
