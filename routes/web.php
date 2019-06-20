@@ -30,6 +30,9 @@ Route::group(['middleware' => ['admin']], function(){
 
     //ruta para el crud de idioma
     Route::resource('idioma','IdiomaController');
+
+    // ruta para el crud de Pais
+    Route::resource('pais','PaisController');
 }); 
 
 
@@ -157,5 +160,3 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 
-// ruta para el crud de Pais
-Route::resource('pais','PaisController');

@@ -12,6 +12,7 @@
 <?php
   // Nombre corto de usuario autentificado.
   $nombre = explode(' ', Auth::user()->nombre);
+  $rol = explode(' ', Auth::user()->role_id);
 ?>
 
 <body>
@@ -66,24 +67,39 @@
       <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
-            <li class="active"><a href="#">Overview <span class="sr-only">(current)</span></a></li>
-            <li><a href="#">Reports</a></li>
-            <li><a href="#">Analytics</a></li>
-            <li><a href="#">Export</a></li>
+            <li class="active"><a href="#"> {{ $nombre[0] }} <span class="sr-only">(current)</span></a></li>
+
+            <li><a href="{{ url('ofertas') }}">Ofertas</a></li>
+            <li><a href="{{ url('puesto') }}">Puesto</a></li>
+
+            @if($rol[0]==2)
+            <li><a href="empresas/create">Ofertar Puesto Trabajo</a></li>
+            <li><a href="empresas_ofertar">Ofertas</a></li>
+            <li><a href="{{ route('empresas.candidatos') }}">Candidatos</a></li>
+            @endif
+
+            @if($rol[0]==1)
+            <li><a href="{{ url('admin/usuarios') }}">Ver Usuarios </a></li>
+            <li><a href="{{ url('admin/usuario') }}">Crear Usuario</a></li>
+            <li><a href="{{ url('idioma') }}">Idiomas</a></li>
+            <li><a href="{{ url('pais') }}">Paises</a></li>
+            @endif
+
+          @if($rol[0]==3)
+            <li><a href="{{  url('postulante') }}">Postulante</a></li>
+            <li><a href="{{ url('conocimientoAcademico') }}">Conocimiento Academico</a></li>
+            <li><a href="{{ url('recomendacion') }}">Recomendacion</a></li>
+            <li><a href="{{ url('experienciaLaboral') }}">Experiencia Laboral</a></li>
+            <li><a href="{{ url('certificacion') }}">Certificacion </a></li>
+            <li><a href="{{ url('experienciaLaboral') }}">Experiencia Laboral</a></li>
+            <li><a href="{{ url('logro') }}">Logros</a></li>
+            <li><a href="{{ url('habilidad_lenguaje') }}">Habilidad de Lenguaje</a></li>
           </ul>
-          <ul class="nav nav-sidebar">
-            <li><a href="">Nav item</a></li>
-            <li><a href="">Nav item again</a></li>
-            <li><a href="">One more nav</a></li>
-            <li><a href="">Another nav item</a></li>
-            <li><a href="">More navigation</a></li>
-          </ul>
-          <ul class="nav nav-sidebar">
-            <li><a href="">Nav item again</a></li>
-            <li><a href="">One more nav</a></li>
-            <li><a href="">Another nav item</a></li>
-          </ul>
-        </div>
+        @endif
+
+
+
+         </div>
 
           <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
             <section>
