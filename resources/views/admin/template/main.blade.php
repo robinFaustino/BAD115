@@ -69,16 +69,16 @@
           <ul class="nav nav-sidebar">
             <li class="active"><a href="#"> {{ $nombre[0] }} <span class="sr-only">(current)</span></a></li>
 
-            <li><a href="{{ url('ofertas') }}">Ofertas</a></li>
-            <li><a href="{{ url('puesto') }}">Puesto</a></li>
 
             @if($rol[0]==2)
-            <li><a href="empresas/create">Ofertar Puesto Trabajo</a></li>
-            <li><a href="empresas_ofertar">Ofertas</a></li>
+            <li><a href="empresas/create">Ofertar un Nuevo Puesto Trabajo</a></li>
+            <li><a href="{{ url('puesto') }}">Lista de Puesto</a></li>
+            <!--<li><a href="empresas_ofertar">Ofertas</a></li>-->
             <li><a href="{{ route('empresas.candidatos') }}">Candidatos</a></li>
             @endif
 
             @if($rol[0]==1)
+            <li><a href="{{ url('admin') }}">Perfil</a></li>
             <li><a href="{{ url('admin/usuarios') }}">Ver Usuarios </a></li>
             <li><a href="{{ url('admin/usuario') }}">Crear Usuario</a></li>
             <li><a href="{{ url('idioma') }}">Idiomas</a></li>
@@ -86,6 +86,7 @@
             @endif
 
           @if($rol[0]==3)
+            <li><a href="{{ url('ofertas') }}">Ofertas</a></li>
             <li><a href="{{  url('postulante') }}">Postulante</a></li>
             <li><a href="{{ url('conocimientoAcademico') }}">Conocimiento Academico</a></li>
             <li><a href="{{ url('recomendacion') }}">Recomendacion</a></li>
@@ -105,6 +106,8 @@
             <section>
               @include('flash::message')
               @yield('contenido')
+
+
             </section>
           </div>
         </div>

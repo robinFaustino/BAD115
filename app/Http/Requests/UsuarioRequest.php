@@ -26,10 +26,10 @@ class UsuarioRequest extends FormRequest
      public function rules()
     {
         $rules = array(
-            'rol_id'   => 'required',
+            'role_id'   => 'required',
             'nombre'   => 'required|min:6|max:100',
             'email'    => 'required|max:100|email|unique:users',
-            'password' => 'min:8|required|max:100',
+            'password' => 'min:6|required|max:100',
         );
 
         return $rules;
