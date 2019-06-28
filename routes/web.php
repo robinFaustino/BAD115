@@ -92,6 +92,9 @@ Grupo de rutas de acceso solo a usuarios de tipo empresa
 */
 Route::group(['middleware' => ['empresa']], function(){
 
+//ruta que recibira todo el dato del postulante
+Route::get('datosPostulante/{id}','EmpresaController@ver');
+
 Route::resource('empresas','EmpresaController');
 Route::resource('empresas_ofertar','Puesto_TrabajoController');
 //Route::post('empresa','EmpresaController@index2');

@@ -39,7 +39,7 @@ use App\Puesto_Trabajo;
                   	  <td>{{$pues->nombre}}</td>
                   	  <td>{{$emp->nombre}}</td>
                   	  <td>
-	                    <a href="#">
+	                    <a href="datosPostulante/{{$puesto_postu->idpostulante}}">
 	                      <button type="button" class="btn btn-primary btn-xs">
 	                        <span class="glyphicon glyphicon-eye-open"></span>Ver
 	                      </button>
