@@ -33,6 +33,9 @@ Route::group(['middleware' => ['admin']], function(){
 
     //ruta para el crud de idioma
     Route::resource('idioma','IdiomaController');
+
+    // ruta para el crud de Pais
+    Route::resource('pais','PaisController');
 }); 
 
 
@@ -91,6 +94,9 @@ Grupo de rutas de acceso solo a usuarios de tipo empresa
 *********************************************************
 */
 Route::group(['middleware' => ['empresa']], function(){
+
+//ruta que recibira todo el dato del postulante
+Route::get('datosPostulante/{id}','EmpresaController@ver');
 
 Route::resource('empresas','EmpresaController');
 Route::resource('empresas_ofertar','Puesto_TrabajoController');
@@ -160,5 +166,3 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 
-// ruta para el crud de Pais
-Route::resource('pais','PaisController');

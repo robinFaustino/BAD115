@@ -1,11 +1,14 @@
 @extends ('admin.template.main')
 
 @section ('contenido')
+
+@if(Session::has('message'))
+     <p class="alert alert-info">{{ Session::get('message') }}</p>
+@endif
+
 <div class="panel panel-default">
  	<div class="panel-heading"><center><h4>Bienvenido!!!</h4></center>
-    <center> <img width="100px"  class="img-circle" height="100px" src="{{ asset('imagen/users/default.png') }}">
-      <!--<img width="100px"  class="img-circle" height="100px" src="{{ asset('imagen/users/'.$user->photo) }}">-->
-    </center>
+    
   </div>
  	<div class="panel-body">
 

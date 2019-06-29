@@ -8,6 +8,7 @@ use App\Certificacion;
 use App\Postulante;
 use App\Certificacion_Postulante;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
 use App\Http\Requests\CertificadoFormRequest;
 use DB;
 
@@ -71,6 +72,13 @@ class CertificacionController extends Controller
         
         foreach ($postulante as $postulante) {
             $data2[]=$postulante->idpostulante;
+        }
+
+        //si contiene un array con ningun elemento mandara un mensaje
+        if(count($postulante)==0) {
+            //dd("no tiene elementos");
+            Session::flash('message', 'No hay registro de certificacion');
+            return Redirect::to('certificacion');
         }
         
         $certi_postu = DB::table('certificacion_postulante')->whereIn('idpostulante',$data2)->get();

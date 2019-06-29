@@ -101,5 +101,36 @@ class EmpresaController extends Controller
         //dd($puesto_postu);
 
         return view('empresas.vistaCandidatos')->with('puesto_postu',$puesto_postu);
+    }
+
+    //metodo para ver los perfiles de los candidatos
+    public function ver(Request $request,$id)
+    {
+        //dd($id);
+        //dd($data);
+        $data=DB::table("postulante_puesto")
+        ->join('postulante','postulante_puesto.idpostulante','=','postulante.idpostulante')
+        ->select('postulante.idpostulante as id','postulante.firtsname as n1','postulante.lastname as a1','postulante.genero','postulante.fechanacimiento as fecha','postulante.dui','postulante.telefono','postulante.correo')
+        ->where('postulante_puesto.idpostulante','=',$id)
+        ->get();
+        //dd($data);
+    
+        //dd($id);
+        $conocimiento=DB::table("postulante_conocimiento")
+        ->join('conocomiento_academico','postulante_conocimiento.idconocimientoacademino','=','conocomiento_academico.idconocimientoacademino')
+        ->where('idpostulante','=',$id)
+        ->get();
+        //dd($conocimiento);
+        /*foreach ($data as $data) {
+            dd($data->id);
+        }*/
+
+        $expe=DB::table("experiencia_laboral_postulante")
+        ->join('experiencia_laboral','experiencia_laboral_postulante.idexperiencialaboral','=','experiencia_laboral.idexperiencialaboral')
+        ->where('idpostulante','=',$id)
+        ->get();
+        //dd($expe);
+
+        return view('empresas.perfil')->with('data',$data)->with('conocimiento',$conocimiento)->with('expe',$expe);
     } 
 }

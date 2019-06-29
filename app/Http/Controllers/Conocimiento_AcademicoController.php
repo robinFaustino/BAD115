@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Conocimiento_Academico;
 use App\Postulante_Conocimiento;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\Conocimiento_AcademicoFormRequest;
 use DB;
@@ -39,6 +40,14 @@ class Conocimiento_AcademicoController extends Controller
         $data=\Auth::user()->id;
         $postulante = DB::table('postulante')->select('idpostulante')->where('iduser','=',$data)->get();
         //dd($postulante);
+        
+        //si contiene un array con ningun elemento mandara un mensaje
+        if(count($postulante)==0) {
+            //dd("no tiene elementos");
+            Session::flash('message', 'No hay registro de Conocimientos Academicos');
+            return Redirect::to('conocimientoAcademico');
+        }
+
         foreach ($postulante as $postulante) {
             $data2[]=$postulante->idpostulante;
         }

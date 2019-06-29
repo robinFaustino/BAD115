@@ -10,6 +10,7 @@ use App\Departamento;
 use App\Municipio;
 use App\Puesto_Trabajo;
 use App\Postulante_Puesto;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\PostulanteFormRequest;
 use DB;
@@ -113,6 +114,14 @@ class PostulanteController extends Controller
         //dd($data);
         $postulante = DB::table('postulante')->select('idpostulante')->where('iduser','=',$data)->get();
         //dd($postulante);
+
+        //si contiene un array con ningun elemento mandara un mensaje
+        if(count($postulante)==0) {
+            //dd("no tiene elementos");
+            Session::flash('message', 'No hay procesos de postulacion');
+            return Redirect::to('postulante');
+        }
+
         foreach ($postulante as $postulante) {
             $data2[]=$postulante->idpostulante;
         }

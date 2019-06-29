@@ -7,6 +7,7 @@ use App\Http\Requests;
 use App\ExperienciaLaboral;
 use App\EXPERIENCIA_POSTULANTE;
 //use App\Departamento;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\ExperienciaLaboralFormRequest;
 use DB;
@@ -76,6 +77,14 @@ class ExperienciaLaboralController extends Controller
         $data=\Auth::user()->id;
         $postulante = DB::table('postulante')->select('idpostulante')->where('iduser','=',$data)->get();
         //dd($postulante);
+
+        //si contiene un array con ningun elemento mandara un mensaje
+        if(count($postulante)==0) {
+            //dd("no tiene elementos");
+            Session::flash('message', 'No hay registro de Experiencias laborales');
+            return Redirect::to('experienciaLaboral');
+        }
+
         foreach ($postulante as $postulante) {
             $data2[]=$postulante->idpostulante;
         }
