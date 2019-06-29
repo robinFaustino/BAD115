@@ -39,6 +39,14 @@ class User extends Authenticatable
         return $this->belongsTo('App\Rol');
     }
 
+    public function setPasswordAttribute($value)
+    {
+        if (!empty($value))
+        {
+            $this->attributes['password'] = $value;
+        }
+    }
+
     /**
      * Indica si el usuario tiene rol de Administrador.
      *
@@ -54,6 +62,11 @@ class User extends Authenticatable
 
     public function usuario() {
         return $this->role_id === 3;
+    }
+
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new MyResetPassword($token));
     }
 
 

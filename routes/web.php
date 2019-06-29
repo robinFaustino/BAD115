@@ -17,6 +17,9 @@ Route::get('/admin', function () {
     return view('admin/menu');
 });
 
+ // Editar contraseña.
+    Route::put('/{user}/password', 'HomeController@actualizarPassword')->name('actualizar-password');
+
 /*
 *********************************************************
 Grupo de rutas de acceso solo a usuarios administradores 
