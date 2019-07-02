@@ -37,7 +37,10 @@ class CertificacionController extends Controller
 
     public function create()
     {
-        $postu = DB::select('SELECT * FROM postulante');
+        //$postu = DB::select('SELECT * FROM postulante');
+        //extraer todos los postulante creados por ese usuario 
+        $data=\Auth::user()->id;
+        $postu = DB::table('postulante')->where('iduser','=',$data)->get();
 
         return view("certificacion.create")->with('postu',$postu); 
     }

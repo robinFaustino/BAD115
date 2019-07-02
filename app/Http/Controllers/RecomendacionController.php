@@ -7,6 +7,7 @@ use App\Recomendacion;
 use App\Postulante; 
 use App\Http\Requests\RecomendacionRequest;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
 use Laracasts\Flash\Flash;
 use DB;
 
@@ -24,6 +25,13 @@ class RecomendacionController extends Controller
             $data=\Auth::user()->id;
 
             $postulante = DB::table('postulante')->where('iduser','=',$data)->get();
+
+            //si contiene un array con ningun elemento mandara un mensaje
+            if(count($postulante)==0) {
+                //dd("no tiene elementos");
+                Session::flash('message', 'No hay registro de Recomendaciones');
+                return Redirect::to('recomendacion\show');
+            }
 
             foreach($postulante as $postulante){
                 $idpostulante[]=$postulante->idpostulante;

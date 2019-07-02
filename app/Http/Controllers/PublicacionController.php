@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Postulante; 
 use Laracasts\Flash\Flash;
 use DB;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\PublicacionRequests;
 
 class PublicacionController extends Controller
@@ -23,6 +25,14 @@ class PublicacionController extends Controller
             $data=\Auth::user()->id;
 
             $postulante = DB::table('postulante')->where('iduser','=',$data)->get();
+
+
+            //si contiene un array con ningun elemento mandara un mensaje
+            if(count($postulante)==0) {
+                //dd("no tiene elementos");
+                Session::flash('message', 'No hay registro de Publicaciones');
+                return Redirect::to('publicacion\show');
+            }
 
             foreach($postulante as $postulante){
                 $idpostulante[]=$postulante->idpostulante;

@@ -7,6 +7,8 @@ use App\Postulante;
 use App\TipoLogro;
 use App\Logro;
 use Laracasts\Flash\Flash;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\LogroRequest;
 use DB;
 
@@ -24,6 +26,13 @@ class LogroController extends Controller
            $data=\Auth::user()->id;
 
             $postulante = DB::table('postulante')->where('iduser','=',$data)->get();
+
+            //si contiene un array con ningun elemento mandara un mensaje
+            if(count($postulante)==0) {
+                //dd("no tiene elementos");
+                Session::flash('message', 'No hay registro de Logros');
+                return Redirect::to('logro\show');
+            }
 
             foreach($postulante as $postulante){
                 $idpostulante[]=$postulante->idpostulante;

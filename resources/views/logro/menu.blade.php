@@ -1,6 +1,11 @@
 @extends ('admin.template.main')
 
 @section ('contenido')
+
+@if(Session::has('message'))
+     <p class="alert alert-info">{{ Session::get('message') }}</p>
+@endif
+
 <div class="panel panel-default">
  	<div class="panel-heading"><center><h4>Logros del postulante </h4></center></div>
  	<div class="panel-body">

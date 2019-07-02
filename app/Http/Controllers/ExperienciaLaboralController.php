@@ -37,8 +37,11 @@ class ExperienciaLaboralController extends Controller
 
     public function create()
     {
-        $postu = DB::select('SELECT * FROM postulante');
-
+        //$postu = DB::select('SELECT * FROM postulante');
+        //extraer todos los postulante creados por ese usuario 
+        $data=\Auth::user()->id;
+        $postu = DB::table('postulante')->where('iduser','=',$data)->get();
+        
         return view("experienciaLaboral.create")->with('postu',$postu); 
     }
 //ExperienciaLaboralFormRequest
@@ -73,7 +76,7 @@ class ExperienciaLaboralController extends Controller
 
     public function show(Request $request)
     {
-
+        //extraer todos los postulante creados por ese usuario 
         $data=\Auth::user()->id;
         $postulante = DB::table('postulante')->select('idpostulante')->where('iduser','=',$data)->get();
         //dd($postulante);
