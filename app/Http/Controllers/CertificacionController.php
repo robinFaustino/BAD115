@@ -86,6 +86,12 @@ class CertificacionController extends Controller
 
         
         $certi_postu = DB::table('certificacion_postulante')->whereIn('idpostulante',$data2)->get();
+
+        if(count($certi_postu)==0) {
+            //dd("no tiene elementos");
+            Session::flash('message', 'No hay registro de certificacion');
+            return Redirect::to('certificacion');
+        }
         
         foreach ($certi_postu as $certi_postu) {
             $data3[]=$certi_postu->idcertificacion;

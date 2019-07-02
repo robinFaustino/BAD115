@@ -28,7 +28,7 @@ class PostulanteFormRequest extends FormRequest
             'firtsname'=> 'required',
             'correo' => 'required|email|max:50',
             'telefono' => 'required|max:9',
-            'photo' => 'required|image|mimes:jpg,png,jpeg'
+            'photo' => 'image|mimes:jpg,png,jpeg'
         ];
     }
 }

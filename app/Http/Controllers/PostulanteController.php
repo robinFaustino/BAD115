@@ -83,10 +83,10 @@ class PostulanteController extends Controller
         $postulante->iduser=$data;
         
         //Guardar la foto del postulante con el id de su usuario y la extencion de la imagen
-        $filename= $data.'_'.$request->photo->getClientOriginalExtension();
-        $request->photo->move(public_path('imagen/users'), $filename); //guarda la imagen en la carpeta /imagen/users
+        /*$filename= $data.'_'.$request->photo->getClientOriginalExtension();
+        $request->photo->move(public_path('imagen/users'), $filename);*/ //guarda la imagen en la carpeta /imagen/users
 
-        $postulante->photo= $filename; // guarda solo el nombre del archivo
+        //$postulante->photo= $filename; // guarda solo el nombre del archivo
 
 
         $postulante->save();

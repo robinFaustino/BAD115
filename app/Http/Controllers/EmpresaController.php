@@ -106,7 +106,7 @@ class EmpresaController extends Controller
             $data2[]=$puesto->idpuestotrabajo;
         }
         //dd($data2);
-        $puesto_postu=DB::table('postulante_puesto')->whereIn('idpostulante',$data2)->orWhere('estado','=','1')->get();
+        $puesto_postu=DB::table('postulante_puesto')->whereIn('idpuestotrabajo',$data2)->where('estado','=','1')->get();
         //dd($puesto_postu);
 
         return view('empresas.vistaCandidatos')->with('puesto_postu',$puesto_postu);
