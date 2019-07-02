@@ -76,7 +76,7 @@
             <!--<li><a href="empresas_ofertar">Ofertas</a></li>-->
             <li><a href="{{ route('empresas.candidatos') }}">Candidatos</a></li>
             <li><a href="{{ url('examenes') }}">Examenes</a></li>
-            <li><a href="{{ url('tipoexamene') }}">Examenes</a></li>
+            <li><a href="{{ url('tipoexamen') }}">Tipo de Examen</a></li>
             @endif
 
             @if($rol[0]==1)
@@ -94,6 +94,7 @@
             <li><a href="{{ url('recomendacion') }}">Recomendacion</a></li>
             <li><a href="{{ url('experienciaLaboral') }}">Experiencia Laboral</a></li>
             <li><a href="{{ url('certificacion') }}">Certificacion </a></li>
+            <li><a href="{{ url('publicacion') }}">Publicación </a></li>
             <li><a href="{{ url('experienciaLaboral') }}">Experiencia Laboral</a></li>
             <li><a href="{{ url('logro') }}">Logros</a></li>
             <li><a href="{{ url('habilidad_lenguaje') }}">Habilidad de Lenguaje</a></li>
