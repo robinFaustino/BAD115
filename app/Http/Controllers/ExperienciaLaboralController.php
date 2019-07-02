@@ -45,7 +45,7 @@ class ExperienciaLaboralController extends Controller
         return view("experienciaLaboral.create")->with('postu',$postu); 
     }
 //ExperienciaLaboralFormRequest
-    public function store(Request $request)
+    public function store(ExperienciaLaboralFormRequest $request)
     {
         $data=$request->idpostulante;
         //dd($data);

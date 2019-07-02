@@ -75,7 +75,7 @@ class Conocimiento_AcademicoController extends Controller
         return view("conocimientoAcademico.create")->with('postu',$postu); 
     }
 //Conocimiento_AcademicoFormRequest
-    public function store(Request $request)
+    public function store(Conocimiento_AcademicoFormRequest $request)
     {
         $data=$request->idpostulante;
         //dd($data);
