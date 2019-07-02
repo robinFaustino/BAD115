@@ -60,7 +60,6 @@ Route::get('puestoOfertas/{idpuestotrabajo}', function($idpuestotrabajo){
 
 
 
-
 Route::get('postulante/enviarOferta/{id}', function($id){
   
     $enviar=App\Postulante_Puesto::findOrFail($id);
@@ -103,6 +102,12 @@ Route::resource('empresas_ofertar','Puesto_TrabajoController');
 //Route::post('empresa','EmpresaController@index2');
 Route::post('empresa','EmpresaController@store');
 Route::post('puesto','Puesto_TrabajoController@store');
+
+// Examenes
+Route::resource('examenes', 'ExamenController');
+Route::get('examenes/{id}/agregar_preguntas', 'ExamenController@agregar_preguntas')->name('agregar_preguntas');
+
+Route::resource('tipoexamen', 'TipoExamenController');
 
 }); 
 

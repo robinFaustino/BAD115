@@ -75,6 +75,8 @@
             <li><a href="{{ url('puesto') }}">Lista de Puesto</a></li>
             <!--<li><a href="empresas_ofertar">Ofertas</a></li>-->
             <li><a href="{{ route('empresas.candidatos') }}">Candidatos</a></li>
+            <li><a href="{{ url('examenes') }}">Examenes</a></li>
+            <li><a href="{{ url('tipoexamene') }}">Examenes</a></li>
             @endif
 
             @if($rol[0]==1)
