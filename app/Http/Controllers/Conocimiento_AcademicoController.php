@@ -54,6 +54,12 @@ class Conocimiento_AcademicoController extends Controller
         //dd($data2);
         $cono_postu = DB::table('postulante_conocimiento')->whereIn('idpostulante',$data2)->get();
         //dd($cono_postu);
+        if(count($cono_postu)==0) {
+            //dd("no tiene elementos");
+            Session::flash('message', 'No hay registro de Conocimientos Academicos');
+            return Redirect::to('conocimientoAcademico');
+        }
+
         foreach ($cono_postu as $cono_postu) {
             $data3[]=$cono_postu->idconocimientoacademino;
         }

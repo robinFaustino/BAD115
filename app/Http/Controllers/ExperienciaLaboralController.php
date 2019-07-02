@@ -94,6 +94,12 @@ class ExperienciaLaboralController extends Controller
         //dd($data2);
         $expe_postu = DB::table('experiencia_laboral_postulante')->whereIn('idpostulante',$data2)->get();
         //dd($expe_postu);
+        if(count($expe_postu)==0) {
+            //dd("no tiene elementos");
+            Session::flash('message', 'No hay registro de Experiencias laborales');
+            return Redirect::to('experienciaLaboral');
+        }
+
         foreach ($expe_postu as $expe_postu) {
             $data3[]=$expe_postu->idexperiencialaboral;
         }
