@@ -72,10 +72,6 @@ class CertificacionController extends Controller
         //$certificacion = DB::select('SELECT * FROM certificacion');
         $data=\Auth::user()->id;
         $postulante = DB::table('postulante')->select('idpostulante')->where('iduser','=',$data)->get();
-        
-        foreach ($postulante as $postulante) {
-            $data2[]=$postulante->idpostulante;
-        }
 
         //si contiene un array con ningun elemento mandara un mensaje
         if(count($postulante)==0) {
@@ -83,6 +79,11 @@ class CertificacionController extends Controller
             Session::flash('message', 'No hay registro de certificacion');
             return Redirect::to('certificacion');
         }
+        
+        foreach ($postulante as $postulante) {
+            $data2[]=$postulante->idpostulante;
+        }
+
         
         $certi_postu = DB::table('certificacion_postulante')->whereIn('idpostulante',$data2)->get();
         

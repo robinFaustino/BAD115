@@ -10,6 +10,7 @@ use App\Postulante_Puesto;
 use App\Postulante;
 use App\Puesto_Trabajo;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
 use App\Http\Requests\EmpresaFormRequest;
 use DB;
 
@@ -93,6 +94,14 @@ class EmpresaController extends Controller
         //dd($data);
         $puesto = DB::table('puesto_trabajo')->select('idpuestotrabajo')->where('iduser','=',$data)->get();
         //dd($puesto);
+
+        //si contiene un array con ningun elemento mandara un mensaje
+        if(count($puesto)==0) {
+            //dd("no tiene elementos");
+            Session::flash('message', 'No hay candidatos ofertando por puesto');
+            return Redirect::to('empresas');
+        }
+
         foreach ($puesto as $puesto) {
             $data2[]=$puesto->idpuestotrabajo;
         }

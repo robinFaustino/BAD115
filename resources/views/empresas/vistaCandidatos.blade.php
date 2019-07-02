@@ -9,6 +9,10 @@ use App\Puesto_Trabajo;
 
 @section ('contenido')
 
+@if(Session::has('message'))
+     <p class="alert alert-info">{{ Session::get('message') }}</p>
+@endif
+
 <main role="main">
 
   <!-- Main jumbotron for a primary marketing message or call to action -->
